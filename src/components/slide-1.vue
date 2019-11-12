@@ -45,7 +45,6 @@
 
 <script>
 import {mapMutations} from 'vuex'
-import cars from '../api/cars.json'
 export default {
   name: 'slide-1',
   data() {
@@ -98,8 +97,8 @@ export default {
     }
   },
   mounted() {
-    this.createYears()
     this.createBrands()
+    this.createYears()
   },
   computed: {
     allowNext: {
