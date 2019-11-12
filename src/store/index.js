@@ -8,9 +8,9 @@ export default new Vuex.Store({
     currentSlide: 1,
     carModel: [],
     colors: [],
-    personal: '',
+    personal: null,
     isModal: false,
-    kit: '',
+    kit: null,
     pyatnikPrice: 450,
     shildaPrice: 150,
     totalPrice: null,
@@ -20,14 +20,10 @@ export default new Vuex.Store({
         price: 910,
         pyatnik: {
           is: false,
-          title: 'Подпятник',
-          price: 150
         },
         shildi: {
           is: false,
-          title: 'Шильды',
-          price: 150,
-          count: null
+          count: 1
         }
       },
       standart: {
@@ -35,14 +31,10 @@ export default new Vuex.Store({
         price: 1010,
         pyatnik: {
           is: false,
-          title: 'Подпятник',
-          price: 150
         },
         shildi: {
           is: false,
-          title: 'Шильды',
-          price: 150,
-          count: null
+          count: 1
         }
       },
       premium: {
@@ -50,60 +42,23 @@ export default new Vuex.Store({
         price: 1110,
         pyatnik: {
           is: false,
-          title: 'Подпятник',
-          price: 150
         },
         shildi: {
           is: false,
-          title: 'Шильды',
-          price: 150,
-          count: null
+          count: 1
         }
       },
       premiumPlus: {
         title: 'Премиум Плюс',
-        price: 1210,
-        pyatnik: {
-          is: false,
-          title: 'Подпятник',
-          price: 150
-        },
-        shildi: {
-          is: false,
-          title: 'Шильды',
-          price: 150,
-          count: null
-        }
+        price: 1210
       },
       platinum: {
         title: 'Платинум',
-        price: 1310,
-        pyatnik: {
-          is: false,
-          title: 'Подпятник',
-          price: 150
-        },
-        shildi: {
-          is: false,
-          title: 'Шильды',
-          price: 150,
-          count: null
-        }
+        price: 1310
       },
       vip: {
         title: 'VIP',
-        price: 1410,
-        pyatnik: {
-          is: false,
-          title: 'Подпятник',
-          price: 150
-        },
-        shildi: {
-          is: false,
-          title: 'Шильды',
-          price: 150,
-          count: null
-        }
+        price: 1410
       }
     }
   },
@@ -120,8 +75,11 @@ export default new Vuex.Store({
     setColor(state, [main, secondary]) {
       state.colors = [main, secondary]
     },
-    setKit(state, kit) {
-      state.kit = kit
+    setKit(state, obj) {
+      state.kit = obj
+    },
+    setShildaCount(state, [count, id]) {
+      state.kits[id].shildi.count = count
     },
     setPersonal(state, [name, phone]) {
       state.personal = [name, phone]
@@ -143,6 +101,47 @@ export default new Vuex.Store({
         set.shildi.count = count
       }
       state.totalPrice = totalPrice
+    },
+    setOption(state, [id, which]) {
+      if (which === 'pyatnik') {
+        state.kits[id].pyatnik.is = !state.kits[id].pyatnik.is
+      }
+      if (which === 'shilda') {
+        state.kits[id].shildi.is = !state.kits[id].shildi.is
+      }
+    }
+  },
+  getters: {
+    getKits(state) {
+      return state.kits
+    },
+    getPrice: state => id => {
+      const kit = state.kits[id]
+
+      if ("pyatnik" in kit) {
+        if (kit.pyatnik.is && kit.shildi.is) {
+          return kit.price + state.pyatnikPrice + state.shildaPrice * kit.shildi.count
+        }
+        else if (kit.pyatnik.is || kit.shildi.is) {
+          if (kit.pyatnik.is) {
+            console.log('here')
+            return kit.price + state.pyatnikPrice
+          }
+          if (kit.shildi.is) {
+            return kit.price + state.shildaPrice * kit.shildi.count
+          }
+        }
+        else {
+          return kit.price
+        }
+      }
+
+      else {
+        return kit.price
+      }
+    },
+    isSelectDisabled: state => id => {
+      return state.kits[id].shildi.is ? false : true
     }
   }
 })

@@ -79,6 +79,7 @@ export default {
     async fetchModel(brand) {
       const res = await fetch(`https://api.auto.ria.com/categories/1/marks/${brand}/models`)
       const json = await res.json()
+      this.models = []
       json.forEach((item) => {
         this.models.push(item.name)
       })

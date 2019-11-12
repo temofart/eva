@@ -2,54 +2,71 @@
   <div class="slide">
     <h2>Виртуальный<br>конструктор ковриков</h2>
     <div class="step">ШАГ 3 из 4</div>
-    <strong class="description">Следующий шаг- выбор комплекта и подбор дополнительных аксессуаров</strong>
-    <div class="choose">
-      <div
-        v-for="(item, index) in items"
-        :key="item.id"
-        @click.stop="modal(item, index)"
-        class="item"
-        :class="{'active': index === activeItem}"
-      >{{item}}</div>
-    </div>
-    <button @click.prevent="sendData" :disabled="!allowNext">Дальше</button>
+    <strong class="description">Следующий шаг - выбор комплекта и подбор дополнительных аксессуаров</strong>
+      <div class="choose">
+        <div
+          v-for="(item, id) in getKits"
+          :key="id"
+          class="item"
+        >
+          <h3 class="title">{{item.title}}</h3>
+          <div class="accessuar">
+            <div class="acc-title">Аксессуары</div>
+            <div class="acc-desc">скидка не распространяется</div>
+            <img src="" alt="" />
+            <div class="options" v-if="item.pyatnik || item.shildi">
+              <div class="option">
+                <input type="checkbox" @change="calc(id, item, 'pyatnik')">
+                <label>Подпятник</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" @change="calc(id, item, 'shilda')">
+                <label>Шильды</label>
+                <v-select
+                  :options="['1', '2', '3', '4', '5']"
+                  @input="setShildaCount([$event, id])"
+                  :disabled="isSelectDisabled(id)"
+                />
+              </div>
+            </div>
+            <div class="complete">
+              <div class="price">{{getPrice(id)}}</div>
+              <div
+                @click.prevent="sendData(item)"
+                class="button"
+              >Выбрать комплект</div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import {mapMutations, mapGetters} from 'vuex'
 export default {
   name: 'slide-3',
   data() {
     return {
-      choosen: null,
-      value: null,
-      items: ['Эконом', 'Стандарт', 'Премиум', 'Премиум плюс', 'Платинум', 'VIP'],
-      activeItem: null
     }
   },
   methods: {
-    ...mapMutations(['next', 'openModal']),
-    sendData() {
-      this.next()
+    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount']),
+    calc(id, item, which, value) {
+      if (which === 'pyatnik') {
+        this.setOption([id, 'pyatnik'])
+      }
+      if (which === 'shilda') {
+        this.setOption([id, 'shilda'])
+      }
     },
-    modal(val, id) {
-      if (val === 'Эконом') this.value = 'econom'
-      if (val === 'Стандарт') this.value = 'standart'
-      if (val === 'Премиум') this.value = 'premium'
-      if (val === 'Премиум плюс') this.value = 'premiumPlus'
-      if (val === 'Платинум') this.value = 'platinum'
-      if (val === 'VIP') this.value = 'vip'
-      this.openModal(this.value)
-      this.activeItem = id
+    sendData(obj) {
+      this.setKit(obj)
+      this.next()
     }
   },
   computed: {
-    allowNext: {
-      get() {
-        return (this.activeItem !== null) ? true : false
-      }
-    }
+    ...mapGetters(['getKits', 'getPrice', 'isSelectDisabled']),
   }
 }
 </script>
@@ -60,17 +77,21 @@ export default {
     flex-wrap: wrap;
 
     .item {
-      width: 100px;
-      height: 100px;
-      border: 1px solid #ccc;
+      max-width: calc(33.3% - 20px);
+      width: 100%;
+      margin-bottom: 20px;
+      min-height: 590px;
+      box-shadow: 0px 2px 20px 0px #e0e0e0d1;
+      border: 1px solid transparent;
+      padding: 26px;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
       cursor: pointer;
-      text-align: center;
+      transition: all .5s ease;
 
       &:hover {
-        border: 1px solid red;
+        border: 1px solid #e40004;
       }
 
       &:not(:last-child) {
@@ -79,6 +100,12 @@ export default {
 
       &.active {
         border: 2px solid rgb(5, 206, 5);
+      }
+
+      .title {
+        font-size: 26px;
+        margin: 0;
+        padding: 0;
       }
     }
   }
