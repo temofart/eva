@@ -1,8 +1,8 @@
 <template>
   <div class="slide">
-    <h2>Виртуальный<br>конструктор ковриков</h2>
+    <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
     <div class="step">ШАГ 3 из 4</div>
-    <strong class="description">Следующий шаг - выбор комплекта и подбор дополнительных аксессуаров</strong>
+    <strong class="description">Следующий шаг - выбор комплекта и подбор<br>дополнительных аксессуаров</strong>
       <div class="choose">
         <div
           v-for="(item, id) in getKits"
@@ -10,33 +10,47 @@
           class="item"
         >
           <h3 class="title">{{item.title}}</h3>
-          <div class="accessuar">
-            <div class="acc-title">Аксессуары</div>
-            <div class="acc-desc">скидка не распространяется</div>
-            <img src="" alt="" />
-            <div class="options" v-if="item.pyatnik || item.shildi">
-              <div class="option">
-                <input type="checkbox" @change="calc(id, item, 'pyatnik')">
-                <label>Подпятник</label>
-              </div>
-              <div class="option">
-                <input type="checkbox" @change="calc(id, item, 'shilda')">
-                <label>Шильды</label>
-                <v-select
-                  :options="['1', '2', '3', '4', '5']"
-                  @input="setShildaCount([$event, id])"
-                  :disabled="isSelectDisabled(id)"
-                />
-              </div>
+          <div class="acc-title">Аксессуары</div>
+          <div class="acc-desc">скидка не распространяется</div>
+          <img class="pic" src="../assets/kit.png" alt="" />
+          <div class="options" v-if="item.pyatnik || item.shildi">
+            <div class="option">
+              <input
+                type="checkbox"
+                :id="`pyatnik-${id}`"
+                @change="calc(id, item, 'pyatnik')"
+                class="input"
+              >
+              <label
+                :for="`pyatnik-${id}`"
+                class="label"
+                data-text="Подпятник"
+              />
             </div>
-            <div class="complete">
-              <div class="price">{{getPrice(id)}}</div>
-              <div
-                @click.prevent="sendData(item)"
-                class="button"
-              >Выбрать комплект</div>
+            <div class="option">
+              <input
+                type="checkbox"
+                :id="`shilda-${id}`"
+                @change="calc(id, item, 'shilda')"
+                class="input"
+              >
+              <label
+                :for="`shilda-${id}`"
+                class="label"
+                data-text="Шильды"
+              />
+              <v-select
+                :options="['1', '2', '3', '4', '5']"
+                @input="setShildaCount([$event, id])"
+                :disabled="isSelectDisabled(id)"
+              />
             </div>
           </div>
+          <div class="price">{{getPrice(id)}} грн</div>
+          <button
+            @click.prevent="sendData(item)"
+            class="button"
+          >Выбрать комплект</button>
         </div>
       </div>
   </div>
@@ -71,16 +85,17 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .choose {
     display: flex;
     flex-wrap: wrap;
 
     .item {
+      position: relative;
       max-width: calc(33.3% - 20px);
       width: 100%;
       margin-bottom: 20px;
-      min-height: 590px;
+      min-height: 520px;
       box-shadow: 0px 2px 20px 0px #e0e0e0d1;
       border: 1px solid transparent;
       padding: 26px;
@@ -98,14 +113,119 @@ export default {
         margin-right: 20px;
       }
 
-      &.active {
-        border: 2px solid rgb(5, 206, 5);
-      }
-
       .title {
         font-size: 26px;
         margin: 0;
         padding: 0;
+      }
+
+      .acc {
+        &-title {
+          margin-top: 10px;
+        }
+
+        &-desc {
+          font-size: 12px;
+          margin-top: 3px;
+          color: rgb(172, 172, 172);
+        }
+      }
+
+      .pic {
+        max-width: 80%;
+        width: 100%;
+        height: 220px;
+        margin: 20px auto;
+        margin-bottom: 30px;
+      }
+
+      .options {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .option {
+          display: flex;
+          align-items: center;
+          margin-bottom: 15px;
+        }
+
+        .v-select {
+          width: 60px;
+          margin: 0;
+          margin-left: 85px;
+          min-height: 26px;
+          max-height: 26px;
+
+          .vs__dropdown-toggle {
+            min-height: 26px;
+            max-height: 26px;
+          }
+
+          .vs__selected-options {
+            min-height: 26px;
+            max-height: 26px;
+          }
+
+          .vs__search {
+            min-height: 24px;
+            max-height: 24px;
+          }
+        }
+      }
+
+      .price {
+        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        position: relative;
+
+        &::after {
+          content: 'Итого';
+          position: absolute;
+          left: 0;
+          top: -17px;
+          font-size: 13px;
+          color: #999;
+        }
+      }
+
+      .button {
+        position: absolute;
+        left: 26px;
+        bottom: 26px;
+        padding: 0;
+      }
+
+      .input {
+        width: 0.1px;
+        height: 0.1px;
+        visibility: hidden;
+        opacity: 0;
+
+        + .label {
+          width: 20px;
+          height: 20px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          margin-right: 10px;
+          cursor: pointer;
+          position: relative;
+          font-size: 14px;
+
+          &::after {
+            content: attr(data-text);
+            position: relative;
+            left: 30px;
+            z-index: 1;
+          }
+        }
+
+        &:checked {
+          + .label {
+            background: url('../assets/check.svg') no-repeat center center / 10px;
+          }
+        }
       }
     }
   }

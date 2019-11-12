@@ -93,15 +93,6 @@ export default new Vuex.Store({
       state.isModal = false
       document.body.classList.remove('modal-overlay')
     },
-    setKits(state, [kit, pyatnik, shilda, count, totalPrice]) {
-      const set = state.kits[kit]
-      if(pyatnik) set.pyatnik.is = true
-      if(shilda && count) {
-        set.shildi.is = true
-        set.shildi.count = count
-      }
-      state.totalPrice = totalPrice
-    },
     setOption(state, [id, which]) {
       if (which === 'pyatnik') {
         state.kits[id].pyatnik.is = !state.kits[id].pyatnik.is

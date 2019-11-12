@@ -104,6 +104,7 @@ export default {
   .v-select {
     margin-bottom: 20px;
     font-size: 14px !important;
+    cursor: pointer;
 
     &.active {
       .vs__dropdown-toggle {
@@ -115,6 +116,7 @@ export default {
       font-size: 12px;
       color: rgb(161, 161, 161);
       margin: 0 !important;
+      padding: 0;
       min-height: 34px;
 
       &:focus {
@@ -128,11 +130,14 @@ export default {
 
     .vs__dropdown-menu {
       padding: 5px 0 !important;
+      min-width: auto;
     }
 
     .vs__selected-options {
       min-height: 34px;
-      padding: 0 12px;
+      width: 100%;
+      padding: 0;
+      padding-left: 2px;
     }
 
     .vs__clear {
@@ -147,6 +152,11 @@ export default {
       font-weight: bold;
       min-height: 34px;
       margin: 0;
+    }
+
+    .vs__actions {
+      padding: 0;
+      padding-right: 2px;
     }
   }
 
@@ -171,6 +181,7 @@ export default {
     margin: 0;
     padding: 12px 0;
     cursor: pointer;
+    user-select: none;
 
     &[disabled] {
       opacity: 0.6;
