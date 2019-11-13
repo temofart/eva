@@ -7,6 +7,10 @@
       <input class="input" type="text" placeholder="Имя" v-model="name">
       <input class="input" type="text" placeholder="Телефон" v-model="phone">
       <button class="button" @click.prevent="sendData" :disabled="!allowNext || loading">{{finalText}}</button>
+      <button
+        class="button-prev"
+        @click.prevent="prev">Вернуться назад
+      </button>
     </div>
     <div class="column">
       <div class="features">
@@ -44,7 +48,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setPersonal']),
+    ...mapMutations(['setPersonal', 'prev']),
     sendData() {
       this.setPersonal([this.name, this.phone])
       this.getAllInfo()

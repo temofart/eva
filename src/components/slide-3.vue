@@ -3,6 +3,10 @@
     <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
     <div class="step">ШАГ 3 из 4</div>
     <strong class="description">Следующий шаг - выбор комплекта и подбор<br>дополнительных аксессуаров</strong>
+      <button
+        class="button-prev bottom-space"
+        @click.prevent="prev">Вернуться назад
+      </button>
       <div class="choose">
         <div
           v-for="(item, id) in getKits"
@@ -43,7 +47,9 @@
                 :options="['1', '2', '3', '4', '5']"
                 @input="setShildaCount([$event, id])"
                 :disabled="isSelectDisabled(id)"
-              />
+                placeholder="1"
+              >
+              </v-select>
             </div>
           </div>
           <div class="price-wrapper">
@@ -88,7 +94,7 @@ export default {
 
 <style lang="scss">
   .description {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .choose {
@@ -162,6 +168,12 @@ export default {
           min-height: 26px;
           max-height: 26px;
 
+          &.vs--disabled {
+            .vs__search {
+              color: #fff;
+            }
+          }
+
           .vs__dropdown-toggle {
             min-height: 26px;
             max-height: 26px;
@@ -175,6 +187,9 @@ export default {
           .vs__search {
             min-height: 24px;
             max-height: 24px;
+            color: #000;
+            font-size: 14px;
+            padding-left: 5px;
           }
 
           .vs__selected {
@@ -262,5 +277,9 @@ export default {
       bottom: 20px;
       padding: 0;
     }
+  }
+  .button-prev.bottom-space {
+    margin-top: 0;
+    margin-bottom: 30px;
   }
 </style>

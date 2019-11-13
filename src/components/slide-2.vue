@@ -19,6 +19,10 @@
         @click.prevent="sendData"
         :disabled="!allowNext">Дальше
       </button>
+      <button
+        class="button-prev"
+        @click.prevent="prev">Вернуться назад
+      </button>
     </div>
     <div class="column">
       <image-svg
@@ -47,7 +51,7 @@ export default {
     this.secondaryColors = Object.keys(colors.secondary)
   },
   methods: {
-    ...mapMutations(['next', 'setColor']),
+    ...mapMutations(['next', 'prev', 'setColor']),
     sendData() {
       this.setColor([this.selectedMainColor, this.selectedSecondaryColor])
       this.next()

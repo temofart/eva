@@ -218,4 +218,17 @@ export default {
       }
     }
   }
+
+  .button-prev {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    margin-top: 30px;
+    display: block;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+  }
 </style>
