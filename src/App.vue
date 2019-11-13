@@ -175,7 +175,7 @@ export default {
     margin-bottom: 40px;
   }
 
-  button {
+  .button {
     border: 0;
     background: none;
     outline: none;

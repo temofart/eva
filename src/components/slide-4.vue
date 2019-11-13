@@ -6,7 +6,7 @@
       <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
       <input class="input" type="text" placeholder="Имя" v-model="name">
       <input class="input" type="text" placeholder="Телефон" v-model="phone">
-      <button @click.prevent="sendData" :disabled="!allowNext || loading">{{finalText}}</button>
+      <button class="button" @click.prevent="sendData" :disabled="!allowNext || loading">{{finalText}}</button>
     </div>
     <div class="column">
       <div class="features">
@@ -96,6 +96,7 @@ export default {
         document.querySelector('div[data-input-lid="1573456678439"] input').value = message[1]
         document.querySelector('div[data-input-lid="1573456688066"] input').value = message[2]
         document.querySelector('div[data-input-lid="1573456705570"] input').value = message[3]
+        document.querySelector('.t-form__submit button').click()
       }
       else {
         return console.log('Нужных полей не найдено.')

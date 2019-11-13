@@ -15,6 +15,7 @@
         placeholder="Цвет канта"
       />
       <button
+        class="button"
         @click.prevent="sendData"
         :disabled="!allowNext">Дальше
       </button>
