@@ -2,10 +2,12 @@
   <div id="constructor">
     <keep-alive>
       <transition name="fade" mode="out-in">
-        <component :is="`slide-${currentSlide}`" />
+        <component :is="`slide-${3}`" />
       </transition>
     </keep-alive>
-    <modal />
+    <transition name="fade" mode="out-in">
+      <modal-info v-if="$store.state.modalInfo" />
+    </transition>
   </div>
 </template>
 

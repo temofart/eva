@@ -13,7 +13,7 @@
           :key="id"
           class="item"
         >
-          <h3 class="title">{{item.title}}</h3>
+          <h3 class="title">{{item.title}} <i class="icon-info" @click.stop="modalInfo(id)"/></h3>
           <div class="acc-title">Аксессуары</div>
           <div class="acc-desc">скидка не распространяется</div>
           <img class="pic" src="../assets/kit.png" alt="" />
@@ -70,7 +70,7 @@ import {mapMutations, mapGetters} from 'vuex'
 export default {
   name: 'slide-3',
   methods: {
-    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice']),
+    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo']),
     calc(id, item, which, value) {
       if (which === 'pyatnik') {
         this.setOption([id, 'pyatnik'])
@@ -93,6 +93,15 @@ export default {
 </script>
 
 <style lang="scss">
+  .icon-info {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-left: 3px;
+    background: url('../assets/icon-info.svg') no-repeat center center / cover;
+    cursor: pointer;
+  }
+
   .description {
     margin-bottom: 20px;
   }

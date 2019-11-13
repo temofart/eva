@@ -6,10 +6,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentSlide: 1,
+    currentKit: '',
     carModel: [],
     colors: [],
     personal: [],
-    isModal: false,
+    modalInfo: false,
     kit: null,
     pyatnikPrice: 450,
     shildaPrice: 150,
@@ -87,14 +88,10 @@ export default new Vuex.Store({
     setPersonal(state, [name, phone]) {
       state.personal = [name, phone]
     },
-    openModal(state, kit) {
-      state.isModal = true
-      state.kit = kit
-      document.body.classList.add('modal-overlay')
-    },
-    closeModal(state) {
-      state.isModal = false
-      document.body.classList.remove('modal-overlay')
+    modalInfo(state, id) {
+      state.modalInfo = !state.modalInfo
+      document.body.classList.toggle('modal-overlay')
+      state.currentKit = id
     },
     setOption(state, [id, which]) {
       if (which === 'pyatnik') {
@@ -108,6 +105,9 @@ export default new Vuex.Store({
   getters: {
     getKits(state) {
       return state.kits
+    },
+    currentKit(state) {
+      return state.kits[state.currentKit]
     },
     getPrice: state => id => {
       const kit = state.kits[id]
