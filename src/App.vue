@@ -2,7 +2,7 @@
   <div id="constructor">
     <keep-alive>
       <transition name="fade" mode="out-in">
-        <component :is="`slide-3`" />
+        <component :is="`slide-${currentSlide}`" />
       </transition>
     </keep-alive>
     <modal />
@@ -137,7 +137,7 @@ export default {
       min-height: 34px;
       width: 100%;
       padding: 0;
-      padding-left: 2px;
+      padding-left: 10px;
     }
 
     .vs__clear {
@@ -154,9 +154,13 @@ export default {
       margin: 0;
     }
 
+    .vs__search {
+      padding-left: 0;
+    }
+
     .vs__actions {
       padding: 0;
-      padding-right: 2px;
+      padding-right: 8px;
     }
   }
 
@@ -166,7 +170,9 @@ export default {
   }
 
   .title {
-    font-size: 30px;
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 40px;
   }
 
   button {
@@ -182,10 +188,34 @@ export default {
     padding: 12px 0;
     cursor: pointer;
     user-select: none;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: url('./assets/arrow.svg') no-repeat center center / cover;
+      width: 12px;
+      height: 7px;
+      display: block;
+      transition: all .2s ease;
+    }
+
+    &:hover {
+      &::after {
+        right: -30px;
+      }
+    }
 
     &[disabled] {
       opacity: 0.6;
       cursor: not-allowed;
+
+      &::after {
+        right: -25px;
+      }
     }
   }
 </style>

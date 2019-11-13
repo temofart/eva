@@ -1,7 +1,7 @@
 <template>
   <div class="slide column-2">
     <div class="column">
-      <h2>Виртуальный<br>конструктор ковриков</h2>
+      <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
       <div class="step">ШАГ 4 из 4</div>
       <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
       <input class="input" type="text" placeholder="Имя" v-model="name">
@@ -12,19 +12,19 @@
       <div class="features">
         <div class="feature">
           <div class="icon-1"/>
-          <div>Гарантия эксплуатации 12 месяцев</div>
+          <div>Гарантия эксплуатации<br>12 месяцев</div>
         </div>
         <div class="feature">
           <div class="icon-2"/>
-          <div>Доставка по Украине в течение 2 дней</div>
+          <div>Доставка по Украине<br>в течение 2 дней</div>
         </div>
         <div class="feature">
           <div class="icon-3"/>
-          <div>Мгновенная рассрочка платежа</div>
+          <div>Мгновенная<br>рассрочка платежа</div>
         </div>
         <div class="feature">
           <div class="icon-4"/>
-          <div>Пошив от 1 до 3 дней </div>
+          <div>Пошив<br>от 1 до 3 дней </div>
         </div>
       </div>
     </div>
@@ -57,29 +57,50 @@ export default {
     getAllInfo() {
       const kit = this.$store.state.kit
       const info = {
-        'Имя и телефон': this.$store.state.personal,
-        'Марка и модель авто': this.$store.state.carModel,
-        'Цвет основной и дополнительный': this.$store.state.colors,
-        'Набор': this.$store.state.kits[kit].title,
-        'Цена': this.$store.state.kits[kit].price,
-        'Подпятник': this.$store.state.kits[kit].pyatnik.is,
-        'Шильды': this.$store.state.kits[kit].shildi.is,
-        'Колво': this.$store.state.kits[kit].shildi.count
+        personal: `${this.$store.state.personal[0]}, ${this.$store.state.personal[1]}`,
+        car: `${this.$store.state.carModel[0]}, ${this.$store.state.carModel[1]}`,
+        color: `${this.$store.state.colors[0]}, ${this.$store.state.colors[1]}`,
+        totalPrice: `Сумма заказа: ${this.$store.state.totalPrice}`,
+        options: function() {
+          if ("pyatnik" in kit) {
+            var output = `Комплект: ${kit.title}; `
+            if (kit.pyatnik.is) {
+              output += "Подпятник: Да. "
+            }
+            else {
+              output += "Подпятник: Нет, "
+            }
+            if (kit.shildi.is) {
+              output += `Шильды: Да - ${kit.shildi.count}шт.`
+            }
+            else {
+              output += "Шильды: Нет."
+            }
+            return output
+          }
+          else {
+            return `Комплект: ${kit.title}; Подпятник и Шильды - Нет`
+          }
+        }
       }
-      const name = function() {
-        return `${info['Имя и телефон']}`
+      const message = [info.personal, info.car, info.color, info.totalPrice, info.options()]
+      console.log(message)
+
+      if (
+        document.querySelector('div[data-input-lid="1493283059688"] input') &&
+        document.querySelector('div[data-input-lid="1573456678439"] input') &&
+        document.querySelector('div[data-input-lid="1573456688066"] input') &&
+        document.querySelector('div[data-input-lid="1573456705570"] input')
+      ) {
+        document.querySelector('div[data-input-lid="1493283059688"] input').value = message[0]
+        document.querySelector('div[data-input-lid="1573456678439"] input').value = message[1]
+        document.querySelector('div[data-input-lid="1573456688066"] input').value = message[2]
+        document.querySelector('div[data-input-lid="1573456705570"] input').value = message[3]
       }
-      const car = function() {
-        return `${info['Марка и модель авто'][0]} - ${info['Марка и модель авто'][1]}`
+      else {
+        return console.log('Нужных полей не найдено.')
       }
-      const color = function() {
-        return `${info['Цвет основной и дополнительный'][0]}, ${info['Цвет основной и дополнительный'][1]}`
-      }
-      const kits = function() {
-        return `${info['Набор']}, Подпятник: ${info['Подпятник'] ? 'Да' : 'Нет'}, Шильды: ${info['Шильды'] ? 'Да - ' : 'Нет'}, ${info['Шильды'] && info['Колво'] !== null ? `${info['Колво']}` : ''}`
-      }
-      const message = [name(), car(), color(), kits()]
-      window.parent.postMessage(message, "*")
+
     }
   },
   computed: {
@@ -93,12 +114,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.column:first-child {
+  .column:first-child {
     padding-right: 10%;
   }
-  button {
-    margin-top: 70px;
-  }
+
   .input {
     width: 100%;
     display: block;
@@ -111,22 +130,24 @@ export default {
     align-items: center;
     outline: none;
   }
+
   .features {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    padding: 50px;
+    padding-top: 100px;
+    font-size: 14px;
 
     .feature {
       width: 50%;
 
       [class^=icon] {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         display: block;
         background-repeat: no-repeat;
         background-size: cover;
-        margin: 10px auto;
+        margin: 10px 0;
       }
 
       .icon-1 {
@@ -143,5 +164,4 @@ export default {
       }
     }
   }
-
 </style>

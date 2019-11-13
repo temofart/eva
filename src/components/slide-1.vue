@@ -112,10 +112,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.column:first-child {
-  padding-right: 10%;
-}
-button {
-  margin-top: 70px;
-}
+  .column:first-child {
+    padding-right: 10%;
+  }
+  button {
+    margin-top: 30px;
+  }
 </style>

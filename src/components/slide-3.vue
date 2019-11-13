@@ -46,9 +46,12 @@
               />
             </div>
           </div>
-          <div class="price">{{getPrice(id)}} грн</div>
+          <div class="price-wrapper">
+            <div class="price">{{getPrice(id)}} грн</div>
+            <div v-if="id !== 'econom'" class="privat">Оплата частями</div>
+          </div>
           <button
-            @click.prevent="sendData(item)"
+            @click.prevent="sendData(item, id)"
             class="button"
           >Выбрать комплект</button>
         </div>
@@ -60,12 +63,8 @@
 import {mapMutations, mapGetters} from 'vuex'
 export default {
   name: 'slide-3',
-  data() {
-    return {
-    }
-  },
   methods: {
-    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount']),
+    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice']),
     calc(id, item, which, value) {
       if (which === 'pyatnik') {
         this.setOption([id, 'pyatnik'])
@@ -74,8 +73,10 @@ export default {
         this.setOption([id, 'shilda'])
       }
     },
-    sendData(obj) {
+    sendData(obj, id) {
+      const price = this.getPrice(id)
       this.setKit(obj)
+      this.setPrice(price)
       this.next()
     }
   },
@@ -86,6 +87,10 @@ export default {
 </script>
 
 <style lang="scss">
+  .description {
+    margin-bottom: 40px;
+  }
+
   .choose {
     display: flex;
     flex-wrap: wrap;
@@ -96,7 +101,7 @@ export default {
       width: 100%;
       margin-bottom: 20px;
       min-height: 520px;
-      box-shadow: 0px 2px 20px 0px #e0e0e0d1;
+      box-shadow: 0px 2px 20px 0px #e0e0e0;
       border: 1px solid transparent;
       padding: 26px;
       display: flex;
@@ -171,30 +176,12 @@ export default {
             min-height: 24px;
             max-height: 24px;
           }
+
+          .vs__selected {
+            max-height: 25px;
+            min-height: 25px;
+          }
         }
-      }
-
-      .price {
-        font-size: 24px;
-        margin-top: 40px;
-        margin-bottom: 50px;
-        position: relative;
-
-        &::after {
-          content: 'Итого';
-          position: absolute;
-          left: 0;
-          top: -17px;
-          font-size: 13px;
-          color: #999;
-        }
-      }
-
-      .button {
-        position: absolute;
-        left: 26px;
-        bottom: 26px;
-        padding: 0;
       }
 
       .input {
@@ -227,6 +214,53 @@ export default {
           }
         }
       }
+    }
+
+    .price-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      .price {
+        font-size: 24px;
+        margin: 40px 0;
+        margin-right: 55px;
+        position: relative;
+
+        &::after {
+          content: 'Итого';
+          position: absolute;
+          left: 0;
+          top: -17px;
+          font-size: 13px;
+          color: #999;
+        }
+      }
+
+      .privat {
+        font-size: 14px;
+        color: #999;
+        text-decoration: underline;
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -28px;
+          bottom: 0;
+          display: block;
+          background: url('../assets/icon-3.png') no-repeat center center / 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+
+    .button {
+      position: absolute;
+      left: 26px;
+      bottom: 20px;
+      padding: 0;
     }
   }
 </style>

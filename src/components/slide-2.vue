@@ -77,6 +77,6 @@ export default {
     padding-right: 10%;
   }
   button {
-    margin-top: 70px;
+    margin-top: 30px;
   }
 </style>

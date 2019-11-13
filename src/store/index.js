@@ -8,7 +8,7 @@ export default new Vuex.Store({
     currentSlide: 1,
     carModel: [],
     colors: [],
-    personal: null,
+    personal: [],
     isModal: false,
     kit: null,
     pyatnikPrice: 450,
@@ -78,6 +78,9 @@ export default new Vuex.Store({
     setKit(state, obj) {
       state.kit = obj
     },
+    setPrice(state, price) {
+      state.totalPrice = price
+    },
     setShildaCount(state, [count, id]) {
       state.kits[id].shildi.count = count
     },
@@ -115,7 +118,6 @@ export default new Vuex.Store({
         }
         else if (kit.pyatnik.is || kit.shildi.is) {
           if (kit.pyatnik.is) {
-            console.log('here')
             return kit.price + state.pyatnikPrice
           }
           if (kit.shildi.is) {
