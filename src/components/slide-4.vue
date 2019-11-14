@@ -157,6 +157,7 @@ export default {
     font-size: 15px;
     align-items: center;
     outline: none;
+    box-shadow: none;
   }
 
   .features {
