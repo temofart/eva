@@ -215,6 +215,7 @@ export default {
   .button-final {
     font-size: 26px;
     margin-top: 70px;
+    word-wrap: word-break;
   }
 
   .button-final::after {
