@@ -62,9 +62,6 @@ export default {
         this.submitted = true
       }, 1000);
     },
-    mounted() {
-      document.getElementById('constructor').scrollTo(0, 0)
-    },
     getAllInfo() {
       const kit = this.$store.state.kit
       const total = this.$store.state.totalPrice
