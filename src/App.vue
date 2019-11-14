@@ -218,7 +218,7 @@ export default {
     background: none;
     outline: none;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 1.2px;
     font-weight: bold;
     color: #d20004;
@@ -258,7 +258,7 @@ export default {
   }
 
   .button-prev {
-    font-size: 12px;
+    font-size: 13px;
     color: #999;
     text-transform: uppercase;
     margin-top: 30px;

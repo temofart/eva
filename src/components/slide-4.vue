@@ -1,40 +1,47 @@
 <template>
   <div class="slide slide-4 column-2">
-    <div class="column">
-      <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
-      <div class="step">ШАГ 4 из 4</div>
-      <template v-if="!submitted">
-        <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
-        <input class="input" type="text" placeholder="Имя" v-model="name">
-        <input class="input" type="text" placeholder="Телефон" v-model="phone">
-        <button v-if="!submitted" class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Жду звонка</button>
-        <button
-          class="button-prev"
-          @click.prevent="prev">Вернуться назад
-        </button>
-      </template>
-      <button v-if="submitted" class="button final">Спасибо за заявку!</button>
+    <div class="final" v-if="submitted">
+      <button class="button button-final">Спасибо за заявку, {{this.$store.state.personal[0]}}!</button>
+      <div class="description">Мы свяжемся с вами в ближайшее время, чтобы обсудить коврики, которые уже ждет ваш автомобиль {{this.$store.state.carModel[0]}} {{this.$store.state.carModel[1]}}.</div>
     </div>
-    <div class="column">
-      <div class="features">
-        <div class="feature">
-          <div class="icon-1"/>
-          <div>Гарантия эксплуатации<br>12 месяцев</div>
-        </div>
-        <div class="feature">
-          <div class="icon-2"/>
-          <div>Доставка по Украине<br>в течение 2 дней</div>
-        </div>
-        <div class="feature">
-          <div class="icon-3"/>
-          <div>Мгновенная<br>рассрочка платежа</div>
-        </div>
-        <div class="feature">
-          <div class="icon-4"/>
-          <div>Пошив<br>от 1 до 3 дней </div>
+    <template v-if="!submitted">
+      <div class="column">
+        <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
+        <div class="step">ШАГ 4 из 4</div>
+        <template v-if="!submitted">
+          <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
+          <input class="input" type="text" placeholder="Имя" v-model="name">
+          <input class="input" type="text" placeholder="Телефон" v-model="phone">
+          <button v-if="!submitted" class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Жду звонка</button>
+          <button
+            class="button-prev"
+            @click.prevent="prev">Вернуться назад
+          </button>
+        </template>
+      </div>
+    </template>
+    <transition name="fade" mode="out-in">
+      <div class="column">
+        <div class="features">
+          <div class="feature">
+            <div class="icon-1"/>
+            <div>Гарантия эксплуатации<br>12 месяцев</div>
+          </div>
+          <div class="feature">
+            <div class="icon-2"/>
+            <div>Доставка по Украине<br>в течение 2 дней</div>
+          </div>
+          <div class="feature">
+            <div class="icon-3"/>
+            <div>Мгновенная<br>рассрочка платежа</div>
+          </div>
+          <div class="feature">
+            <div class="icon-4"/>
+            <div>Пошив<br>от 1 до 3 дней </div>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -143,12 +150,15 @@ export default {
   .features {
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
-    padding-top: 100px;
     font-size: 14px;
+    height: calc(100% - 10px);
+    padding-top: 160px;
 
     .feature {
+      max-height: 50px;
       width: 50%;
+      display: flex;
+      align-items: center;
 
       [class^=icon] {
         width: 40px;
@@ -157,6 +167,7 @@ export default {
         background-repeat: no-repeat;
         background-size: cover;
         margin: 10px 0;
+        margin-right: 15px;
       }
 
       .icon-1 {
@@ -175,11 +186,24 @@ export default {
   }
 
   .final {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 40%;
+    margin-right: 10%;
+
+    + .column .features {
+      padding-top: 80px;
+      transition: all .3s ease;
+    }
+  }
+
+  .button-final {
     font-size: 26px;
     margin-top: 70px;
   }
 
-  .button.final::after {
+  .button-final::after {
     display: none;
   }
 </style>

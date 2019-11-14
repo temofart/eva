@@ -88,7 +88,9 @@ export default {
       }
     },
     sendData(obj, id) {
-      document.getElementById("constructor").scrollIntoView({block: "start", behavior: "smooth"});
+      if(document.getElementById("rec140931884")) {
+        document.getElementById("rec140931884").scrollIntoView({block: "start", behavior: "smooth"})
+      }
       const price = this.getPrice(id)
       this.setKit(obj)
       this.setPrice(price)
