@@ -130,6 +130,7 @@ export default {
     display: block;
     font-size: 16px;
     margin: 20px 0;
+    word-break: break-word;
   }
 
   .v-select {
