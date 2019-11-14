@@ -1,5 +1,5 @@
 <template>
-  <div class="slide slide-4 column-2">
+  <div class="slide slide-4 column-2" :class="{'submitted': submitted}">
     <div class="final" v-if="submitted">
       <button class="button button-final">Спасибо за заявку, {{this.$store.state.personal[0]}}!</button>
       <div class="description">Мы свяжемся с вами в ближайшее время, чтобы обсудить коврики, которые уже ждет ваш автомобиль {{this.$store.state.carModel[0]}} {{this.$store.state.carModel[1]}}.</div>
@@ -163,8 +163,8 @@ export default {
     display: flex;
     flex-wrap: wrap;
     font-size: 14px;
-    height: calc(100% - 10px);
-    padding-top: 160px;
+    height: calc(100% - 151px);
+    padding-top: 236px;
 
     .feature {
       max-height: 50px;
@@ -206,6 +206,7 @@ export default {
 
     + .column .features {
       padding-top: 80px;
+      height: 100%;
       transition: all .3s ease;
     }
   }
@@ -245,6 +246,15 @@ export default {
         z-index: 1;
         white-space: nowrap;
         word-break: keep-all;
+
+        @media (max-width: 400px) {
+          top: -10px;
+          display: inline-block;
+          word-break: keep-all;
+          white-space: normal;
+          min-width: 220px;
+          max-width: 240px;
+        }
       }
     }
 
@@ -253,6 +263,10 @@ export default {
         background: url('../assets/check.svg') no-repeat center center / 10px;
       }
     }
+  }
+
+  .submitted {
+    margin: 300px 0;
   }
 
   input[type=number]::-webkit-inner-spin-button,

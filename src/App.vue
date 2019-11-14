@@ -212,6 +212,7 @@ export default {
     font-size: 34px;
     margin-top: 0;
     margin-bottom: 40px;
+    word-break: break-word;
   }
 
   .button {
