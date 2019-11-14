@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentSlide: 1,
-    currentKit: '',
+    currentKit: null,
     carModel: [],
     colors: [],
     personal: [],

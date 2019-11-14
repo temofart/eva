@@ -62,13 +62,14 @@ export default {
     },
     getAllInfo() {
       const kit = this.$store.state.kit
+      const total = this.$store.state.totalPrice
       const info = {
         personal: `${this.$store.state.personal[0]}, ${this.$store.state.personal[1]}`,
         car: `${this.$store.state.carModel[0]}, ${this.$store.state.carModel[1]}, ${this.$store.state.carModel[2]}`,
         color: `${this.$store.state.colors[0]}, ${this.$store.state.colors[1]}`,
         options: function() {
           if ("pyatnik" in kit) {
-            var output = `Комплект: ${kit.title}; Сумма заказа: ${this.$store.state.totalPrice}`
+            var output = `Комплект: ${kit.title}; Сумма заказа: ${total}`
             if (kit.pyatnik.is) {
               output += "Подпятник: Да. "
             }

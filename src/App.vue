@@ -1,10 +1,10 @@
 <template>
   <div id="constructor">
-    <keep-alive>
-      <transition name="fade" mode="out-in">
-        <component :is="`slide-${currentSlide}`" />
-      </transition>
-    </keep-alive>
+    <transition name="fade" mode="out-in">
+      <keep-alive>
+          <component :is="`slide-${currentSlide}`" />
+      </keep-alive>
+    </transition>
     <transition name="fade" mode="out-in">
       <modal-info v-if="$store.state.modalInfo" />
     </transition>
