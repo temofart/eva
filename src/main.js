@@ -12,6 +12,8 @@ Vue.component('slide-2', () => import('./components/slide-2'))
 Vue.component('slide-3', () => import('./components/slide-3'))
 Vue.component('slide-4', () => import('./components/slide-4'))
 Vue.component('modal-info', () => import('./components/modal-info'))
+Vue.component('modal-pyatnik', () => import('./components/modal-pyatnik'))
+Vue.component('modal-shildi', () => import('./components/modal-shildi'))
 Vue.component('image-svg', () => import('./components/image-svg'))
 
 new Vue({

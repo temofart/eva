@@ -8,6 +8,12 @@
     <transition name="fade" mode="out-in">
       <modal-info v-if="$store.state.modalInfo" />
     </transition>
+    <transition name="fade" mode="out-in">
+      <modal-pyatnik v-if="$store.state.modalPyatnik" />
+    </transition>
+    <transition name="fade" mode="out-in">
+      <modal-shildi v-if="$store.state.modalShildi" />
+    </transition>
   </div>
 </template>
 

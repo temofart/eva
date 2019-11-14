@@ -16,7 +16,7 @@
           <h3 class="title">{{item.title}} <i class="icon-info" @click.stop="modalInfo(id)"/></h3>
           <div class="acc-title">Аксессуары</div>
           <div class="acc-desc">скидка не распространяется</div>
-          <img class="pic" src="../assets/kit.png" alt="" />
+          <img class="pic" :src="getImage(id)" alt="" />
           <div class="options" v-if="item.pyatnik || item.shildi">
             <div class="option">
               <input
@@ -30,6 +30,7 @@
                 class="label"
                 data-text="Подпятник"
               />
+              <i class="icon-info pyatnik" @click.stop="modalPyatnik"/>
             </div>
             <div class="option">
               <input
@@ -43,6 +44,7 @@
                 class="label"
                 data-text="Шильды"
               />
+              <i class="icon-info shilda" @click.stop="modalShildi"/>
               <v-select
                 :options="['1', '2', '3', '4', '5']"
                 @input="setShildaCount([$event, id])"
@@ -70,7 +72,7 @@ import {mapMutations, mapGetters} from 'vuex'
 export default {
   name: 'slide-3',
   methods: {
-    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo']),
+    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShilda']),
     calc(id, item, which, value) {
       if (which === 'pyatnik') {
         this.setOption([id, 'pyatnik'])
@@ -84,6 +86,9 @@ export default {
       this.setKit(obj)
       this.setPrice(price)
       this.next()
+    },
+    getImage: (id) => {
+      return require(`../assets/${id}.jpg`)
     }
   },
   computed: {
@@ -100,6 +105,14 @@ export default {
     margin-left: 3px;
     background: url('../assets/icon-info.svg') no-repeat center center / cover;
     cursor: pointer;
+
+    &.pyatnik {
+      margin-left: 80px;
+    }
+
+    &.shilda {
+      margin-left: 65px;
+    }
   }
 
   .description {
@@ -173,7 +186,7 @@ export default {
         .v-select {
           width: 60px;
           margin: 0;
-          margin-left: 85px;
+          margin-left: 20px;
           min-height: 26px;
           max-height: 26px;
 

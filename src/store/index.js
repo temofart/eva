@@ -11,6 +11,8 @@ export default new Vuex.Store({
     colors: [],
     personal: [],
     modalInfo: false,
+    modalPyatnik: false,
+    modalShildi: false,
     kit: null,
     pyatnikPrice: 450,
     shildaPrice: 150,
@@ -92,6 +94,14 @@ export default new Vuex.Store({
       state.modalInfo = !state.modalInfo
       document.body.classList.toggle('modal-overlay')
       state.currentKit = id
+    },
+    modalPyatnik(state) {
+      state.modalPyatnik = !state.modalPyatnik
+      document.body.classList.toggle('modal-overlay')
+    },
+    modalShildi(state) {
+      state.modalShildi = !state.modalShildi
+      document.body.classList.toggle('modal-overlay')
     },
     setOption(state, [id, which]) {
       if (which === 'pyatnik') {
