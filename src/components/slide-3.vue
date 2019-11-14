@@ -54,6 +54,12 @@
               </v-select>
             </div>
           </div>
+          <div class="gifts" v-if="id === 'premiumPlus'" />
+          <div class="gifts" v-if="id === 'platinum' || id === 'vip'">
+            <div class="gift">Специальный подарок</div>
+            <div class="gift" v-if="id === 'platinum'">2 накидки на передние сиденья из Алькантары</div>
+            <div class="gift" v-if="id === 'vip'">Бесплатная доставка</div>
+          </div>
           <div class="price-wrapper">
             <div class="price">{{getPrice(id)}} грн</div>
             <div v-if="id !== 'econom'" class="privat">Оплата частями</div>
@@ -72,7 +78,7 @@ import {mapMutations, mapGetters} from 'vuex'
 export default {
   name: 'slide-3',
   methods: {
-    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShilda']),
+    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShildi']),
     calc(id, item, which, value) {
       if (which === 'pyatnik') {
         this.setOption([id, 'pyatnik'])
@@ -289,6 +295,32 @@ export default {
           background: url('../assets/icon-3.png') no-repeat center center / 18px;
           width: 18px;
           height: 18px;
+        }
+      }
+    }
+
+    .gifts {
+      min-height: 65px;
+
+      .gift {
+        font-size: 12px;
+        padding-left: 25px;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          display: block;
+          width: 20px;
+          height: 20px;
+          left: -3px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: url('../assets/gift.svg') no-repeat center center / 15px;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 20px;
         }
       }
     }

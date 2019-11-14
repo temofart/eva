@@ -1,37 +1,39 @@
 <template>
-  <div class="modal modal-pyatnik" v-click-outside="modalPyatnik">
-    <div class="close-modal" @click="modalPyatnik"/>
-    <h2 class="title">Подпятник алюминиевый</h2>
-    <p class="description">Один из двух фирменных подпятников - предназначены для защиты водителького коврика,
-    от продавливания и повреждения, каблуком туфлей или шпилькой женской обуви.
-    Располагаются вблизи у педали газа и места отдыха ноги.</p>
-    <div class="modal-content">
-      <div class="flex">
-        <div class="column">
-          <span class="variant">Вариант 1</span>
-          <h4 class="small-title">Подпятник для АКПП</h4>
-          <img src="../assets/pyatnik/akpp.jpg" alt="">
-          <ul>
-            <li>размер 25х16 см</li>
-            <li>толщина 3 мм</li>
-            <li>противоскользящие резиновые вставки</li>
-            <li>комплект креплений - 6шт</li>
-            <li>срок гарантийной поддержки с подпятником 12 месяцев</li>
-          </ul>
-          <div class="price">450 грн</div>
-        </div>
-        <div class="column">
-          <span class="variant">Вариант 2</span>
-          <h4 class="small-title">Подпятник для механики</h4>
-          <img src="../assets/pyatnik/mechanic.jpg" alt="">
-          <ul>
-            <li>размер 29х16 см</li>
-            <li>толщина 3 мм</li>
-            <li>противоскользящие резиновые вставки</li>
-            <li>комплект креплений - 6шт</li>
-            <li>срок гарантийной поддержки с подпятником 12 месяцев</li>
-          </ul>
-          <div class="price">450 грн</div>
+  <div class="modal-wrapper">
+    <div class="modal modal-pyatnik" v-click-outside="modalPyatnik">
+      <div class="close-modal" @click="modalPyatnik"/>
+      <h2 class="title">Подпятник алюминиевый</h2>
+      <p class="description">Один из двух фирменных подпятников - предназначены для защиты водителького коврика,
+      от продавливания и повреждения, каблуком туфлей или шпилькой женской обуви.
+      Располагаются вблизи у педали газа и места отдыха ноги.</p>
+      <div class="modal-content">
+        <div class="flex">
+          <div class="column">
+            <span class="variant">Вариант 1</span>
+            <h4 class="small-title">Подпятник для АКПП</h4>
+            <img src="../assets/pyatnik/akpp.jpg" alt="">
+            <ul>
+              <li>размер 25х16 см</li>
+              <li>толщина 3 мм</li>
+              <li>противоскользящие резиновые вставки</li>
+              <li>комплект креплений - 6шт</li>
+              <li>срок гарантийной поддержки с подпятником 12 месяцев</li>
+            </ul>
+            <div class="price">450 грн</div>
+          </div>
+          <div class="column">
+            <span class="variant">Вариант 2</span>
+            <h4 class="small-title">Подпятник для механики</h4>
+            <img src="../assets/pyatnik/mechanic.jpg" alt="">
+            <ul>
+              <li>размер 29х16 см</li>
+              <li>толщина 3 мм</li>
+              <li>противоскользящие резиновые вставки</li>
+              <li>комплект креплений - 6шт</li>
+              <li>срок гарантийной поддержки с подпятником 12 месяцев</li>
+            </ul>
+            <div class="price">450 грн</div>
+          </div>
         </div>
       </div>
     </div>
@@ -53,96 +55,108 @@ export default {
 </script>
 
 <style lang="scss">
-.modal {
-  position: fixed;
-  z-index: 1000;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fefefe;
-  padding: 30px 40px;
-  width: 80%;
-  max-width: 800px;
-  min-height: 300px;
-  max-height: 95vh;
-  overflow: auto;
-
-  .close-modal {
-    width: 20px;
-    height: 20px;
-    display: block;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    cursor: pointer;
-    background: url('../assets/close-button.svg') no-repeat center center / cover;
-    opacity: 0.1;
-    transition: opacity .2s ease;
-
-    &:hover {
-      opacity: 0.3;
-    }
+  .modal-wrapper {
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px 0;
   }
 
-  &-content {
-    display: flex;
-    flex-direction: column;
+  .modal.modal-pyatnik {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    margin: 50px 0;
+    background-color: #fefefe;
+    padding: 30px 40px;
+    width: 80%;
+    max-width: 800px;
+    min-height: 300px;
 
-    .flex {
-      display: flex;
-      align-items: flex-start;
+    .close-modal {
+      width: 20px;
+      height: 20px;
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      cursor: pointer;
+      background: url('../assets/close-button.svg') no-repeat center center / cover;
+      opacity: 0.1;
+      transition: opacity .2s ease;
 
-      .column {
-        width: 50%;
-
-        &:first-child {
-          margin-right: 35px;
-        }
-
-        img {
-          max-width: 100%;
-
-        }
+      &:hover {
+        opacity: 0.3;
       }
     }
 
-    ul {
-      padding: 0;
-      margin: 0;
+    .modal-content {
+      display: flex;
+      flex-direction: column;
 
-      li {
-        display: inline-block;
-        width: 100%;
-        font-size: 14px;
-        margin-top: 20px;
-        padding-left: 30px;
-        position: relative;
+      .flex {
+        display: flex;
+        align-items: flex-start;
 
-        &::after {
-          content: '';
-          position: absolute;
-          left: 3px;
-          top: 3px;
-          width: 12px;
-          height: 12px;
-          display: block;
-          z-index: 1;
-          background: url('../assets/check-green.svg') no-repeat center center / contain;
+        .column {
+          width: 50%;
+
+          &:first-child {
+            margin-right: 35px;
+          }
+
+          img {
+            max-width: 100%;
+
+          }
         }
       }
 
-      &.column {
-        width: 50%;
-        display: inline-block;
+      ul {
+        padding: 0;
+        margin: 0;
 
         li {
+          display: inline-block;
           width: 100%;
+          font-size: 14px;
+          margin-top: 20px;
+          padding-left: 30px;
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 12px;
+            height: 12px;
+            display: block;
+            z-index: 1;
+            background: url('../assets/check-green.svg') no-repeat center center / contain;
+          }
+        }
+
+        &.column {
+          width: 50%;
+          display: inline-block;
+
+          li {
+            width: 100%;
+          }
         }
       }
     }
-  }
 
-  &.modal-pyatnik {
     .title {
       margin: 0;
       font-weight: normal;
@@ -181,5 +195,4 @@ export default {
       margin-top: 20px;
     }
   }
-}
 </style>
