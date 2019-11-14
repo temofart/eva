@@ -94,6 +94,7 @@ export default {
       setTimeout(() => {
         this.setCar([this.selectedBrand, this.selectedModel, this.selectedYear])
         this.next()
+        this.loading = false
       }, 1000);
     }
   },

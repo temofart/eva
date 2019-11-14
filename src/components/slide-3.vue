@@ -62,7 +62,7 @@
           </div>
           <div class="price-wrapper">
             <div class="price">{{getPrice(id)}} грн</div>
-            <div v-if="id !== 'econom'" @click="modalPrivat" class="privat">Оплата частями</div>
+            <div v-if="id !== 'econom'" @click.stop="modalPrivat" class="privat">Оплата частями</div>
           </div>
           <button
             @click.prevent="sendData(item, id)"
@@ -145,7 +145,7 @@ export default {
       transition: all .5s ease;
 
       &:hover {
-        border: 1px solid #e40004;
+        border: 1px solid rgb(128, 177, 68);
       }
 
       &:not(:last-child) {
@@ -210,6 +210,7 @@ export default {
           .vs__selected-options {
             min-height: 26px;
             max-height: 26px;
+            padding: 0 2px;
           }
 
           .vs__search {
@@ -217,12 +218,20 @@ export default {
             max-height: 24px;
             color: #000;
             font-size: 14px;
-            padding-left: 5px;
+            padding-left: 20px;
           }
 
           .vs__selected {
             max-height: 25px;
             min-height: 25px;
+            padding: 0 20px;
+          }
+
+          .vs__actions {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -4px;
           }
         }
       }

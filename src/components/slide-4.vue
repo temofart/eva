@@ -3,15 +3,17 @@
     <div class="column">
       <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
       <div class="step">ШАГ 4 из 4</div>
-      <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
-      <input class="input" type="text" placeholder="Имя" v-model="name">
-      <input class="input" type="text" placeholder="Телефон" v-model="phone">
-      <button v-if="!submitted" class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Жду звонка</button>
+      <template v-if="!submitted">
+        <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
+        <input class="input" type="text" placeholder="Имя" v-model="name">
+        <input class="input" type="text" placeholder="Телефон" v-model="phone">
+        <button v-if="!submitted" class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Жду звонка</button>
+        <button
+          class="button-prev"
+          @click.prevent="prev">Вернуться назад
+        </button>
+      </template>
       <button v-if="submitted" class="button final">Спасибо за заявку!</button>
-      <button
-        class="button-prev"
-        @click.prevent="prev">Вернуться назад
-      </button>
     </div>
     <div class="column">
       <div class="features">
@@ -59,6 +61,9 @@ export default {
         this.loading = false
         this.submitted = true
       }, 1000);
+    },
+    mounted() {
+      document.getElementById('constructor').scrollIntoView();
     },
     getAllInfo() {
       const kit = this.$store.state.kit
@@ -132,7 +137,8 @@ export default {
     border-radius: 4px;
     padding: 0 15px;
     display: flex;
-    height: 34px;
+    height: 44px;
+    font-size: 15px;
     align-items: center;
     outline: none;
   }
@@ -169,6 +175,11 @@ export default {
         background-image: url('../assets/icon-4.svg');
       }
     }
+  }
+
+  .final {
+    font-size: 26px;
+    margin-top: 70px;
   }
 
   .button.final::after {

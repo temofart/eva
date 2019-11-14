@@ -108,8 +108,8 @@ export default {
   }
 
   #constructor {
-    max-width: 1100px;
-    margin: 100px auto;
+    max-width: 1160px;
+    margin: 20px auto;
 
     * {
       box-sizing: border-box;
@@ -127,6 +127,7 @@ export default {
 
   .description {
     display: block;
+    font-size: 16px;
     margin: 20px 0;
   }
 
@@ -137,19 +138,19 @@ export default {
 
     &.active {
       .vs__dropdown-toggle {
-        border: 1px solid #d20004;
+        border: 1px solid rgb(128, 177, 68);
       }
     }
 
     input {
-      font-size: 12px;
+      font-size: 14px;
       color: rgb(161, 161, 161);
       margin: 0 !important;
       padding: 0;
-      min-height: 34px;
+      min-height: 42px;
 
       &:focus {
-        font-size: 12px;
+        font-size: 14px;
       }
     }
 
@@ -162,11 +163,15 @@ export default {
       min-width: auto;
     }
 
+    .vs__dropdown-option {
+      padding: 7px 20px;
+    }
+
     .vs__selected-options {
-      min-height: 34px;
+      min-height: 42px;
       width: 100%;
-      padding: 0;
       padding-left: 10px;
+      padding-right: 2px;
     }
 
     .vs__clear {
@@ -179,7 +184,7 @@ export default {
 
     .vs__selected {
       font-weight: bold;
-      min-height: 34px;
+      min-height: 42px;
       margin: 0;
     }
 
@@ -190,16 +195,21 @@ export default {
     .vs__actions {
       padding: 0;
       padding-right: 8px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0px;
+      pointer-events: none;
     }
   }
 
   .step {
-    font-size: 12px;
+    font-size: 14px;
     color: rgb(168, 168, 168);
   }
 
   .title {
-    font-size: 32px;
+    font-size: 34px;
     margin-top: 0;
     margin-bottom: 40px;
   }
