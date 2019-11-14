@@ -1,5 +1,5 @@
 <template>
-  <div class="slide">
+  <div class="slide slide-3">
     <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
     <div class="step">ШАГ 3 из 4</div>
     <strong class="description">Следующий шаг - выбор комплекта и подбор<br>дополнительных аксессуаров</strong>

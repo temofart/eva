@@ -1,5 +1,5 @@
 <template>
-  <div class="slide column-2">
+  <div class="slide slide-4 column-2">
     <div class="column">
       <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
       <div class="step">ШАГ 4 из 4</div>

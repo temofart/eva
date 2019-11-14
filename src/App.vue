@@ -2,7 +2,7 @@
   <div id="constructor">
     <keep-alive>
       <transition name="fade" mode="out-in">
-        <component :is="`slide-${currentSlide}`" />
+        <component :is="`slide-${3}`" />
       </transition>
     </keep-alive>
     <transition name="fade" mode="out-in">
@@ -43,6 +43,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "./assets/scss/media.scss";
+
   .fade-enter-active,
   .fade-leave-active {
     transition-duration: 0.3s;

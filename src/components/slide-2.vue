@@ -1,9 +1,14 @@
 <template>
-  <div class="slide column-2">
+  <div class="slide slide-2 column-2">
     <div class="column">
       <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
       <div class="step">ШАГ 2 из 4</div>
       <strong class="description">Следующий шаг- персонализация, подбор цветовой гаммы Ваших будущих ковриков</strong>
+      <image-svg
+        :mainColor="getMainColor"
+        :borderColor="getSecondaryColor"
+        class="mobile"
+      />
       <v-select
         :options="mainColors"
         v-model="selectedMainColor"
