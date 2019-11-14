@@ -62,7 +62,7 @@
           </div>
           <div class="price-wrapper">
             <div class="price">{{getPrice(id)}} грн</div>
-            <div v-if="id !== 'econom'" class="privat">Оплата частями</div>
+            <div v-if="id !== 'econom'" @click="modalPrivat" class="privat">Оплата частями</div>
           </div>
           <button
             @click.prevent="sendData(item, id)"
@@ -78,7 +78,7 @@ import {mapMutations, mapGetters} from 'vuex'
 export default {
   name: 'slide-3',
   methods: {
-    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShildi']),
+    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShildi', 'modalPrivat']),
     calc(id, item, which, value) {
       if (which === 'pyatnik') {
         this.setOption([id, 'pyatnik'])
@@ -282,19 +282,25 @@ export default {
 
       .privat {
         font-size: 14px;
+        line-height: 1;
         color: #999;
-        text-decoration: underline;
+        border-bottom: 1px solid #999;
         position: relative;
+        transition: all .3s ease;
 
         &::before {
           content: '';
           position: absolute;
           left: -28px;
-          bottom: 0;
+          bottom: -2px;
           display: block;
           background: url('../assets/icon-3.png') no-repeat center center / 18px;
           width: 18px;
           height: 18px;
+        }
+
+        &:hover {
+          border-bottom: 1px solid transparent;
         }
       }
     }

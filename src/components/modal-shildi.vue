@@ -39,22 +39,6 @@ export default {
 </script>
 
 <style lang="scss">
-  .modal-wrapper {
-    width: 100%;
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    min-height: 100%;
-    height: 100%;
-    overflow-y: auto;
-    padding: 10px 0;
-  }
-
   .modal.modal-shildi {
     position: absolute;
     z-index: 1000;

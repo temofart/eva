@@ -2,7 +2,7 @@
   <div id="constructor">
     <keep-alive>
       <transition name="fade" mode="out-in">
-        <component :is="`slide-${currentSlide}`" />
+        <component :is="`slide-${3}`" />
       </transition>
     </keep-alive>
     <transition name="fade" mode="out-in">
@@ -13,6 +13,9 @@
     </transition>
     <transition name="fade" mode="out-in">
       <modal-shildi v-if="$store.state.modalShildi" />
+    </transition>
+    <transition name="fade" mode="out-in">
+      <modal-privat v-if="$store.state.modalPrivat" />
     </transition>
   </div>
 </template>
@@ -75,8 +78,24 @@ export default {
       width: 100%;
       min-height: 100vh;
       background: rgba(0, 0, 0, 0.6);
-      z-index: 999;
+      z-index: 9999;
     }
+  }
+
+  .modal-wrapper {
+    width: 100%;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px 0;
   }
 
   #rec140931901 {

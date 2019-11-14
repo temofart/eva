@@ -13,6 +13,7 @@ export default new Vuex.Store({
     modalInfo: false,
     modalPyatnik: false,
     modalShildi: false,
+    modalPrivat: false,
     kit: null,
     pyatnikPrice: 450,
     shildaPrice: 150,
@@ -101,6 +102,10 @@ export default new Vuex.Store({
     },
     modalShildi(state) {
       state.modalShildi = !state.modalShildi
+      document.body.classList.toggle('modal-overlay')
+    },
+    modalPrivat(state) {
+      state.modalPrivat = !state.modalPrivat
       document.body.classList.toggle('modal-overlay')
     },
     setOption(state, [id, which]) {
