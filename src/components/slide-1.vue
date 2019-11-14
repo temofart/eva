@@ -95,6 +95,9 @@ export default {
         this.setCar([this.selectedBrand, this.selectedModel, this.selectedYear])
         this.next()
         this.loading = false
+        if(document.getElementById("rec140931884")) {
+          document.getElementById("rec140931884").scrollIntoView({block: "start", behavior: "smooth"})
+        }
       }, 1000);
     }
   },
