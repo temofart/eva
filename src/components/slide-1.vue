@@ -35,7 +35,7 @@
       >
         <span slot="no-options">Не найдено</span>
       </v-select>
-      <button class="button" @click.prevent="sendData" :disabled="!allowNext">Проверить</button>
+      <button class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Проверить</button>
     </div>
     <div class="column">
       <image-svg :class="{'loading': loading}" />

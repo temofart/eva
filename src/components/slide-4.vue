@@ -6,7 +6,8 @@
       <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
       <input class="input" type="text" placeholder="Имя" v-model="name">
       <input class="input" type="text" placeholder="Телефон" v-model="phone">
-      <button class="button" @click.prevent="sendData" :disabled="!allowNext || loading">{{finalText}}</button>
+      <button v-if="!submitted" class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Жду звонка</button>
+      <button v-if="submitted" class="button final">Спасибо за заявку!</button>
       <button
         class="button-prev"
         @click.prevent="prev">Вернуться назад
@@ -44,7 +45,8 @@ export default {
       name: '',
       phone: '',
       finalText: 'Жду звонка',
-      loading: false
+      loading: false,
+      submitted: false
     }
   },
   methods: {
@@ -55,7 +57,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-        this.finalText = 'Спасибо за заявку!'
+        this.submitted = true
       }, 1000);
     },
     getAllInfo() {
@@ -64,10 +66,9 @@ export default {
         personal: `${this.$store.state.personal[0]}, ${this.$store.state.personal[1]}`,
         car: `${this.$store.state.carModel[0]}, ${this.$store.state.carModel[1]}, ${this.$store.state.carModel[2]}`,
         color: `${this.$store.state.colors[0]}, ${this.$store.state.colors[1]}`,
-        totalPrice: `Сумма заказа: ${this.$store.state.totalPrice}`,
         options: function() {
           if ("pyatnik" in kit) {
-            var output = `Комплект: ${kit.title}; `
+            var output = `Комплект: ${kit.title}; Сумма заказа: ${this.$store.state.totalPrice}`
             if (kit.pyatnik.is) {
               output += "Подпятник: Да. "
             }
@@ -87,8 +88,7 @@ export default {
           }
         }
       }
-      const message = [info.personal, info.car, info.color, info.totalPrice, info.options()]
-      console.log(message)
+      const message = [info.personal, info.car, info.color, info.options()]
 
       if (
         document.querySelector('div[data-input-lid="1493283059688"] input') &&
@@ -168,5 +168,9 @@ export default {
         background-image: url('../assets/icon-4.svg');
       }
     }
+  }
+
+  .button.final::after {
+    display: none;
   }
 </style>

@@ -78,7 +78,7 @@ import {mapMutations, mapGetters} from 'vuex'
 export default {
   name: 'slide-3',
   methods: {
-    ...mapMutations(['setOption', 'next', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShildi', 'modalPrivat']),
+    ...mapMutations(['setOption', 'next', 'prev', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShildi', 'modalPrivat']),
     calc(id, item, which, value) {
       if (which === 'pyatnik') {
         this.setOption([id, 'pyatnik'])

@@ -73,8 +73,8 @@ export default new Vuex.Store({
     prev(state) {
       state.currentSlide--
     },
-    setCar(state, [brand, model]) {
-      state.carModel = [brand, model]
+    setCar(state, [brand, model, year]) {
+      state.carModel = [brand, model, year]
     },
     setColor(state, [main, secondary]) {
       state.colors = [main, secondary]
