@@ -17,7 +17,8 @@ $not-mobile: '(min-width: 999px)';
 #constructor {
   @media #{$mobile} {
     .mob-wrap {
-      padding: 0 20px;
+      max-width: 320px;
+      margin: 0 auto;
     }
 
     .column-2 {
@@ -28,7 +29,8 @@ $not-mobile: '(min-width: 999px)';
       .column {
         width: 100%;
         padding-right: 0;
-        padding: 0 20px;
+        max-width: 320px;
+        margin: 0 auto;
       }
     }
 
@@ -44,11 +46,11 @@ $not-mobile: '(min-width: 999px)';
       .choose {
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding: 0 10px;
+        padding: 10px;
 
         .item {
-          min-width: 350px;
-          max-width: 350px;
+          min-width: 330px;
+          max-width: 330px;
           box-shadow: 0px 2px 20px 0px #c5c5c5;
         }
       }
