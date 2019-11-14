@@ -62,7 +62,7 @@ export default {
       const kit = this.$store.state.kit
       const info = {
         personal: `${this.$store.state.personal[0]}, ${this.$store.state.personal[1]}`,
-        car: `${this.$store.state.carModel[0]}, ${this.$store.state.carModel[1]}`,
+        car: `${this.$store.state.carModel[0]}, ${this.$store.state.carModel[1]}, ${this.$store.state.carModel[2]}`,
         color: `${this.$store.state.colors[0]}, ${this.$store.state.colors[1]}`,
         totalPrice: `Сумма заказа: ${this.$store.state.totalPrice}`,
         options: function() {

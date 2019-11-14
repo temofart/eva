@@ -92,7 +92,7 @@ export default {
     sendData() {
       this.loading = true
       setTimeout(() => {
-        this.setCar([this.selectedBrand, this.selectedModel])
+        this.setCar([this.selectedBrand, this.selectedModel, this.selectedYear])
         this.next()
       }, 1000);
     }
