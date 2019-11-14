@@ -63,7 +63,7 @@ export default {
       }, 1000);
     },
     mounted() {
-      document.getElementById('constructor').scrollIntoView({block: "start", behavior: "smooth"});
+      document.getElementById('constructor').scrollTo(0, 0)
     },
     getAllInfo() {
       const kit = this.$store.state.kit
