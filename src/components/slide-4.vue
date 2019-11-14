@@ -11,7 +11,18 @@
         <template v-if="!submitted">
           <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
           <input class="input" type="text" placeholder="Имя" v-model="name">
-          <input class="input" type="text" placeholder="Телефон" v-model="phone">
+          <input class="input" type="number" placeholder="Телефон" v-model="phone">
+          <input
+            type="checkbox"
+            id="agree"
+            @change="agree = !agree"
+            class="input"
+          >
+          <label
+            for="agree"
+            class="label"
+            data-text="Даю согласие на обработку персональных данных"
+          />
           <button v-if="!submitted" class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Жду звонка</button>
           <button
             class="button-prev"
@@ -55,7 +66,8 @@ export default {
       phone: '',
       finalText: 'Жду звонка',
       loading: false,
-      submitted: false
+      submitted: false,
+      agree: false
     }
   },
   methods: {
@@ -121,7 +133,7 @@ export default {
   computed: {
     allowNext: {
       get() {
-        return this.name && this.phone ? true : false
+        return this.name && this.phone && this.agree ? true : false
       }
     }
   }
@@ -205,5 +217,46 @@ export default {
 
   .button-final::after {
     display: none;
+  }
+
+  .input[type="checkbox"] {
+    width: 0.1px;
+    height: 0.1px;
+    visibility: hidden;
+    opacity: 0;
+    display: inline-block;
+
+    + .label {
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      cursor: pointer;
+      position: relative;
+      font-size: 14px;
+      margin-bottom: 20px;
+
+      &::after {
+        content: attr(data-text);
+        position: relative;
+        left: 30px;
+        z-index: 1;
+        white-space: nowrap;
+        word-break: keep-all;
+      }
+    }
+
+    &:checked {
+      + .label {
+        background: url('../assets/check.svg') no-repeat center center / 10px;
+      }
+    }
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+      appearance: none !important;
   }
 </style>

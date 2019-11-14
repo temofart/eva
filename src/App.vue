@@ -2,7 +2,7 @@
   <div id="constructor">
     <transition name="fade" mode="out-in">
       <keep-alive>
-          <component :is="`slide-${currentSlide}`" />
+          <component :is="`slide-${4}`" />
       </keep-alive>
     </transition>
     <transition name="fade" mode="out-in">
@@ -110,6 +110,7 @@ export default {
   #constructor {
     max-width: 1160px;
     margin: 20px auto;
+    background: #fff;
 
     * {
       box-sizing: border-box;

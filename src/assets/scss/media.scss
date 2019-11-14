@@ -111,5 +111,11 @@ $not-mobile: '(min-width: 999px)';
         }
       }
     }
+
+    input,
+    select:focus,
+    textarea {
+      font-size: 16px !important;
+    }
   }
 }

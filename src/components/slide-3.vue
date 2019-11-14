@@ -260,6 +260,8 @@ export default {
             position: relative;
             left: 30px;
             z-index: 1;
+            white-space: nowrap;
+            word-break: keep-all;
           }
         }
 
