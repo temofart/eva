@@ -170,8 +170,7 @@ export default {
     .vs__selected-options {
       min-height: 42px;
       width: 100%;
-      padding-left: 10px;
-      padding-right: 2px;
+      padding: 1px 2px 1px 10px;
     }
 
     .vs__clear {
