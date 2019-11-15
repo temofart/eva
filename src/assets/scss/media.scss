@@ -243,6 +243,7 @@ $not-mobile: '(min-width: 999px)';
     .mob-wrap,
     .column-2 .column {
       max-width: 320px;
+      padding: 0;
     }
 
     .title {
