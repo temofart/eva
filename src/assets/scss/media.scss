@@ -17,7 +17,7 @@ $not-mobile: '(min-width: 999px)';
 #constructor {
   @media #{$mobile} {
     .mob-wrap {
-      max-width: 320px;
+      max-width: 640px;
       margin: 0 auto;
     }
 
@@ -29,7 +29,7 @@ $not-mobile: '(min-width: 999px)';
       .column {
         width: 100%;
         padding-right: 0;
-        max-width: 320px;
+        max-width: 640px;
         margin: 0 auto;
       }
     }
@@ -47,11 +47,58 @@ $not-mobile: '(min-width: 999px)';
         flex-wrap: nowrap;
         overflow-x: auto;
         padding: 10px;
+        position: relative;
 
         .item {
           min-width: 330px;
           max-width: 330px;
           box-shadow: 0px 2px 20px 0px #c5c5c5;
+
+          .pic {
+            margin: 10px auto;
+          }
+
+          .option:last-child {
+            margin-bottom: 0;
+          }
+
+          .button {
+            bottom: 10px;
+          }
+
+          .gifts {
+            padding-top: 10px;
+          }
+
+          .price {
+            margin-top: 30px;
+            margin-bottom: 20px;
+          }
+        }
+
+        .title {
+          margin-bottom: 0px;
+        }
+
+        .acc-title {
+          color: rgb(116, 116, 116);
+        }
+      }
+
+      .swipe {
+        width: 100%;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top: -20px;
+        color: #999;
+
+        .icon-swipe {
+          width: 25px;
+          height: 25px;
+          background: url('./assets/swipe-icon.svg') no-repeat center center / cover;
+          display: block;
         }
       }
     }
@@ -131,10 +178,34 @@ $not-mobile: '(min-width: 999px)';
     }
   }
 
-  @media (max-width: 350px) {
+  @media #{$small-mobile} {
+    .mob-wrap,
+    .column-2 .column {
+      max-width: 320px;
+    }
+
+    .title {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      margin: 10px 0;
+    }
+
+    button {
+      margin-top: 0;
+      padding: 15px 0;
+    }
+
     .image.mobile {
-      width: 270px;
-      height: 333px;
+      width: 200px;
+      height: 242px;
+      display: block !important;
+    }
+
+    .vs__dropdown-toggle {
+      border: 1px solid rgba(60, 60, 60, 0.58);
     }
   }
 }

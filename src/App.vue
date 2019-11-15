@@ -109,7 +109,9 @@ export default {
 
   #constructor {
     max-width: 1160px;
-    margin: 20px auto;
+    margin: 0 auto;
+    padding: 20px 0;
+    padding-bottom: 50px;
     background: #fff;
 
     * {

@@ -249,7 +249,7 @@ export default {
         white-space: nowrap;
         word-break: keep-all;
 
-        @media (max-width: 400px) {
+        @media (max-width: 480px) {
           top: -10px;
           display: inline-block;
           word-break: keep-all;
@@ -268,7 +268,7 @@ export default {
   }
 
   .submitted {
-    margin: 300px 0;
+    margin: 100px 0;
   }
 
   input[type=number]::-webkit-inner-spin-button,

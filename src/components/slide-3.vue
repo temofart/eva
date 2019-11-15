@@ -3,12 +3,13 @@
     <div class="mob-wrap">
       <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
       <div class="step">ШАГ 3 из 4</div>
-      <strong class="description">Следующий шаг - выбор комплекта и подбор<br>дополнительных аксессуаров</strong>
+      <strong class="description">Следующий шаг - выбор комплекта и подбор дополнительных аксессуаров</strong>
       <button
         class="button-prev bottom-space"
         @click.prevent="prev">Вернуться назад
       </button>
     </div>
+      <div class="mobile swipe"><i class="icon-swipe" />Свайпай влево</div>
       <div class="choose">
         <div
           v-for="(item, id) in getKits"
