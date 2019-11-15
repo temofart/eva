@@ -63,7 +63,7 @@ $not-mobile: '(min-width: 999px)';
       .choose {
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding: 10px;
+        padding: 12px 10px;
         position: relative;
 
         .item {
@@ -77,10 +77,6 @@ $not-mobile: '(min-width: 999px)';
 
           .option:last-child {
             margin-bottom: 0;
-          }
-
-          .button {
-            bottom: 10px;
           }
 
           .gifts {
@@ -254,10 +250,20 @@ $not-mobile: '(min-width: 999px)';
     .swipe {
       max-width: 320px;
       padding: 0 !important;
+
+      .arrow {
+        left: 130px;
+      }
     }
 
     .description {
       margin: 10px 0;
+    }
+
+    .choose {
+      .button {
+        bottom: 10px;
+      }
     }
 
     button {

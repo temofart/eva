@@ -158,6 +158,8 @@ export default {
     align-items: center;
     outline: none;
     box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   .features {
