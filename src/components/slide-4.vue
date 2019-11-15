@@ -164,7 +164,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     font-size: 14px;
-    height: calc(100% - 151px);
+    height: calc(100% - 170px);
     padding-top: 236px;
 
     .feature {

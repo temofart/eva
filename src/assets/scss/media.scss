@@ -15,6 +15,18 @@ $not-mobile: '(min-width: 999px)';
   }
 }
 #constructor {
+  @media #{$tablet} {
+    .mob-wrap {
+      padding: 0 20px
+    }
+
+    .column-2 {
+      .column {
+        padding: 0 20px;
+      }
+    }
+  }
+
   @media #{$mobile} {
     .mob-wrap {
       max-width: 640px;
