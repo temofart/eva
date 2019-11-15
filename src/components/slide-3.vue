@@ -9,7 +9,13 @@
         @click.prevent="prev">Вернуться назад
       </button>
     </div>
-      <div class="mobile swipe"><i class="icon-swipe" />Свайпай влево</div>
+      <div class="mobile swipe">Крути в сторону
+        <div class="arrow">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
       <div class="choose">
         <div
           v-for="(item, id) in getKits"
@@ -105,6 +111,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getKits', 'getPrice', 'isSelectDisabled']),
+  },
+  mounted() {
+    document.querySelector('.choose').scrollLeft = 330;
   }
 }
 </script>
