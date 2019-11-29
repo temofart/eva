@@ -138,7 +138,7 @@ export default {
   .validate .v-select {
     &.error {
       .vs__dropdown-toggle {
-        border: 1px solid #d20004;
+        border: 1px solid #d20004 !important;
         box-shadow: 0px 0px 1px 1px #d2000445;
         transition: all .5s ease;
       }
@@ -240,7 +240,7 @@ export default {
     position: relative;
 
     color: white;
-    border: 1px solid;
+    border: 1px solid #d20004;
     border-radius: 4px;
     padding: 12px;
     padding-right: 30px;

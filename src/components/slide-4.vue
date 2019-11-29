@@ -1,5 +1,5 @@
 <template>
-  <div class="slide slide-4 column-2" :class="{'submitted': submitted}">
+  <div class="slide slide-4 column-2" :class="{'submitted': submitted, 'validate': validate}">
     <div class="final" v-if="submitted">
       <button class="button button-final">Спасибо за заявку, {{this.$store.state.personal[0]}}!</button>
       <div class="description">Мы свяжемся с вами в ближайшее время, чтобы обсудить коврики, которые уже ждет ваш автомобиль {{this.$store.state.carModel[0]}} {{this.$store.state.carModel[1]}}.</div>
@@ -10,8 +10,20 @@
         <div class="step">ШАГ 4 из 4</div>
         <template v-if="!submitted">
           <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
-          <input class="input" type="text" placeholder="Имя" v-model="name">
-          <input class="input" type="number" placeholder="Телефон" v-model="phone">
+          <input
+          :class="{'active': name, 'error': !name}"
+          class="input"
+          type="text"
+          placeholder="Имя"
+          v-model="name">
+
+          <input
+          :class="{'active': phone, 'error': !phone}"
+          class="input m-b-0"
+          type="number"
+          placeholder="Телефон"
+          v-model="phone">
+
           <input
             type="checkbox"
             id="agree"
@@ -21,6 +33,7 @@
           <label
             for="agree"
             class="label"
+            :class="{'error': !agree}"
             data-text="Даю согласие на обработку персональных данных"
           />
           <div class="flex">
@@ -31,8 +44,8 @@
             <button
               v-if="!submitted"
               class="button"
-              @click.prevent="sendData"
-              :disabled="!allowNext || loading">Жду звонка</button>
+              :class="{disabled: disabled}"
+              @click.prevent="sendData">Жду звонка</button>
           </div>
         </template>
       </div>
@@ -73,19 +86,26 @@ export default {
       finalText: 'Жду звонка',
       loading: false,
       submitted: false,
-      agree: false
+      agree: false,
+      validate: false
     }
   },
   methods: {
     ...mapMutations(['setPersonal', 'prev']),
     sendData() {
-      this.setPersonal([this.name, this.phone])
-      this.getAllInfo()
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-        this.submitted = true
-      }, 1000);
+      if (this.name && this.phone && this.agree) {
+        this.validate = false
+        this.setPersonal([this.name, this.phone])
+        this.getAllInfo()
+        this.loading = true
+        setTimeout(() => {
+          this.loading = false
+          this.submitted = true
+        }, 1000);
+      }
+      else {
+        this.validate = true
+      }
     },
     getAllInfo() {
       const kit = this.$store.state.kit
@@ -137,9 +157,9 @@ export default {
     }
   },
   computed: {
-    allowNext: {
+    disabled: {
       get() {
-        return this.name && this.phone && this.agree ? true : false
+        return this.name && this.phone && this.agree ? false : true
       }
     }
   }
@@ -178,6 +198,10 @@ export default {
     box-shadow: none;
     -webkit-appearance: none;
     appearance: none;
+  }
+
+  .m-b-0 {
+    margin-bottom: 0;
   }
 
   .features {
@@ -294,5 +318,19 @@ export default {
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
       appearance: none !important;
+  }
+
+  .validate {
+    .input.error {
+      border: 1px solid #d20004;
+      box-shadow: 0px 0px 1px 1px #d2000445;
+      transition: all .5s ease;
+    }
+
+    .label.error {
+      border: 1px solid #d20004;
+      box-shadow: 0px 0px 1px 1px #d2000445;
+      transition: all .5s ease;
+    }
   }
 </style>

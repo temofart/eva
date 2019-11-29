@@ -254,9 +254,13 @@ $not-mobile: '(min-width: 999px)';
       margin: 10px 0;
     }
 
+    .price-wrapper {
+      margin-bottom: 20px;
+    }
+
     .choose {
       .button {
-        bottom: 10px;
+        bottom: 20px;
       }
     }
 
