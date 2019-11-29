@@ -23,11 +23,17 @@
             class="label"
             data-text="Даю согласие на обработку персональных данных"
           />
-          <button v-if="!submitted" class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Жду звонка</button>
-          <button
-            class="button-prev"
-            @click.prevent="prev">Вернуться назад
-          </button>
+          <div class="flex">
+            <button
+              class="button-prev"
+              @click.prevent="prev">Вернуться назад
+            </button>
+            <button
+              v-if="!submitted"
+              class="button"
+              @click.prevent="sendData"
+              :disabled="!allowNext || loading">Жду звонка</button>
+          </div>
         </template>
       </div>
     </template>
@@ -145,6 +151,18 @@ export default {
     padding-right: 10%;
   }
 
+  button {
+    margin-top: 0;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+
+  .flex {
+    display: flex;
+  }
+
   .input {
     width: 100%;
     display: block;
@@ -166,7 +184,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     font-size: 14px;
-    height: calc(100% - 170px);
     padding-top: 236px;
 
     .feature {
@@ -174,6 +191,7 @@ export default {
       width: 50%;
       display: flex;
       align-items: center;
+      margin-bottom: 20px;
 
       [class^=icon] {
         width: 40px;

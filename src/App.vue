@@ -246,6 +246,11 @@ export default {
     padding-right: 30px;
     background: #d20004;
     text-transform: capitalize;
+    transition: background .3s ease;
+
+    &:hover {
+      background: #bb0003;
+    }
 
     &::after {
       content: '';
@@ -277,5 +282,14 @@ export default {
     padding: 0;
     cursor: pointer;
     outline: none;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 12px;
+    transition: background .3s ease;
+
+    &:hover {
+      background: rgb(240, 240, 240);
+    }
   }
 </style>

@@ -4,81 +4,81 @@
       <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
       <div class="step">ШАГ 3 из 4</div>
       <strong class="description">Следующий шаг - выбор комплекта и подбор дополнительных аксессуаров</strong>
+    </div>
+    <div class="mobile swipe">
+      <div class="icon-arrow"/>
+      <div class="icon-swipe" />
+      <div class="icon-arrow"/>
+    </div>
+    <div class="choose">
+      <div
+        v-for="(item, id) in getKits"
+        :key="id"
+        class="item"
+      >
+        <h3 class="title">{{item.title}} <i class="icon-info" @click.stop="modalInfo(id)"/></h3>
+        <div class="acc-title">Аксессуары</div>
+        <div class="acc-desc">скидка не распространяется</div>
+        <img class="pic" :src="getImage(id)" alt="" />
+        <div class="options" v-if="item.pyatnik || item.shildi">
+          <div class="option">
+            <input
+              type="checkbox"
+              :id="`pyatnik-${id}`"
+              @change="calc(id, item, 'pyatnik')"
+              class="input"
+            >
+            <label
+              :for="`pyatnik-${id}`"
+              class="label"
+              data-text="Подпятник"
+            />
+            <i class="icon-info pyatnik" @click.stop="modalPyatnik"/>
+          </div>
+          <div class="option">
+            <input
+              type="checkbox"
+              :id="`shilda-${id}`"
+              @change="calc(id, item, 'shilda')"
+              class="input"
+            >
+            <label
+              :for="`shilda-${id}`"
+              class="label"
+              data-text="Шильды"
+            />
+            <i class="icon-info shilda" @click.stop="modalShildi"/>
+            <v-select
+              :options="['1', '2', '3', '4', '5']"
+              @input="setShildaCount([$event, id])"
+              :disabled="isSelectDisabled(id)"
+              placeholder="1"
+            >
+            </v-select>
+          </div>
+        </div>
+        <div class="gifts" v-if="id === 'premiumPlus'" />
+        <div class="gifts" v-if="id === 'platinum' || id === 'vip'">
+          <div class="gift">Специальный подарок</div>
+          <div class="gift" v-if="id === 'platinum'">2 накидки на передние сиденья из Алькантары</div>
+          <div class="gift" v-if="id === 'vip'">Бесплатная доставка</div>
+        </div>
+        <div class="price-wrapper">
+          <div class="price">{{getPrice(id)}} грн</div>
+          <div v-if="id !== 'econom'" @click.stop="modalPrivat" class="privat">Оплата частями</div>
+        </div>
+        <button
+          @click.prevent="sendData(item, id)"
+          class="button"
+        >Выбрать комплект</button>
+      </div>
+    </div>
+    <div class="mob-wrap">
       <button
         class="button-prev bottom-space"
         @click.prevent="prev">Вернуться назад
       </button>
     </div>
-      <div class="mobile swipe">Крути в сторону
-        <div class="arrow">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <div class="choose">
-        <div
-          v-for="(item, id) in getKits"
-          :key="id"
-          class="item"
-        >
-          <h3 class="title">{{item.title}} <i class="icon-info" @click.stop="modalInfo(id)"/></h3>
-          <div class="acc-title">Аксессуары</div>
-          <div class="acc-desc">скидка не распространяется</div>
-          <img class="pic" :src="getImage(id)" alt="" />
-          <div class="options" v-if="item.pyatnik || item.shildi">
-            <div class="option">
-              <input
-                type="checkbox"
-                :id="`pyatnik-${id}`"
-                @change="calc(id, item, 'pyatnik')"
-                class="input"
-              >
-              <label
-                :for="`pyatnik-${id}`"
-                class="label"
-                data-text="Подпятник"
-              />
-              <i class="icon-info pyatnik" @click.stop="modalPyatnik"/>
-            </div>
-            <div class="option">
-              <input
-                type="checkbox"
-                :id="`shilda-${id}`"
-                @change="calc(id, item, 'shilda')"
-                class="input"
-              >
-              <label
-                :for="`shilda-${id}`"
-                class="label"
-                data-text="Шильды"
-              />
-              <i class="icon-info shilda" @click.stop="modalShildi"/>
-              <v-select
-                :options="['1', '2', '3', '4', '5']"
-                @input="setShildaCount([$event, id])"
-                :disabled="isSelectDisabled(id)"
-                placeholder="1"
-              >
-              </v-select>
-            </div>
-          </div>
-          <div class="gifts" v-if="id === 'premiumPlus'" />
-          <div class="gifts" v-if="id === 'platinum' || id === 'vip'">
-            <div class="gift">Специальный подарок</div>
-            <div class="gift" v-if="id === 'platinum'">2 накидки на передние сиденья из Алькантары</div>
-            <div class="gift" v-if="id === 'vip'">Бесплатная доставка</div>
-          </div>
-          <div class="price-wrapper">
-            <div class="price">{{getPrice(id)}} грн</div>
-            <div v-if="id !== 'econom'" @click.stop="modalPrivat" class="privat">Оплата частями</div>
-          </div>
-          <button
-            @click.prevent="sendData(item, id)"
-            class="button"
-          >Выбрать комплект</button>
-        </div>
-      </div>
   </div>
 </template>
 

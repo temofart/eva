@@ -21,16 +21,18 @@
         v-model="selectedSecondaryColor"
         placeholder="Цвет канта"
       />
-      <button
-        class="button"
-        :class="{disabled: disabled}"
-        @click.prevent="sendData"
-      >Дальше
-      </button>
-      <button
-        class="button-prev"
-        @click.prevent="prev">Вернуться назад
-      </button>
+      <div class="flex">
+        <button
+          class="button-prev"
+          @click.prevent="prev">Вернуться назад
+        </button>
+        <button
+          class="button"
+          :class="{disabled: disabled}"
+          @click.prevent="sendData"
+        >Дальше
+        </button>
+      </div>
     </div>
     <div class="column">
       <image-svg
@@ -99,7 +101,16 @@ export default {
   .column:first-child {
     padding-right: 10%;
   }
+
   button {
-    margin-top: 30px;
+    margin-top: 0;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+
+  .flex {
+    display: flex;
   }
 </style>

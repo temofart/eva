@@ -132,7 +132,4 @@ export default {
   .column:first-child {
     padding-right: 10%;
   }
-  button {
-    margin-top: 30px;
-  }
 </style>
