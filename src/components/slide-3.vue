@@ -289,6 +289,7 @@ export default {
       width: 100%;
       display: flex;
       align-items: center;
+      margin-bottom: 10px;
 
       .price {
         font-size: 24px;
@@ -361,7 +362,6 @@ export default {
       position: absolute;
       left: 26px;
       bottom: 20px;
-      padding: 0;
     }
   }
   .button-prev.bottom-space {

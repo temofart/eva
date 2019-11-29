@@ -1,5 +1,5 @@
 <template>
-  <div class="slide slide-2 column-2">
+  <div class="slide slide-2 column-2" :class="{'validate': validate}">
     <div class="column">
       <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
       <div class="step">ШАГ 2 из 4</div>
@@ -11,18 +11,21 @@
       />
       <v-select
         :options="mainColors"
+        :class="{'active': selectedMainColor, 'error': !selectedMainColor}"
         v-model="selectedMainColor"
         placeholder="Цвет полимера"
       />
       <v-select
         :options="secondaryColors"
+        :class="{'active': selectedSecondaryColor, 'error': !selectedSecondaryColor}"
         v-model="selectedSecondaryColor"
         placeholder="Цвет канта"
       />
       <button
         class="button"
+        :class="{disabled: disabled}"
         @click.prevent="sendData"
-        :disabled="!allowNext">Дальше
+      >Дальше
       </button>
       <button
         class="button-prev"
@@ -48,7 +51,8 @@ export default {
       mainColors: [],
       secondaryColors: [],
       selectedMainColor: null,
-      selectedSecondaryColor: null
+      selectedSecondaryColor: null,
+      validate: false
     }
   },
   mounted() {
@@ -58,17 +62,23 @@ export default {
   methods: {
     ...mapMutations(['next', 'prev', 'setColor']),
     sendData() {
-      this.setColor([this.selectedMainColor, this.selectedSecondaryColor])
-      this.next()
-      if(document.getElementById("rec140931884")) {
-        document.getElementById("rec140931884").scrollIntoView({block: "start", behavior: "smooth"})
+      if (this.selectedMainColor && this.selectedSecondaryColor) {
+        this.validate = false
+        this.setColor([this.selectedMainColor, this.selectedSecondaryColor])
+        this.next()
+        if(document.getElementById("rec140931884")) {
+          document.getElementById("rec140931884").scrollIntoView({block: "start", behavior: "smooth"})
+        }
+      }
+      else {
+        this.validate = true
       }
     }
   },
   computed: {
-    allowNext: {
+    disabled: {
       get() {
-        return this.selectedMainColor && this.selectedSecondaryColor ? true : false
+        return this.selectedMainColor && this.selectedSecondaryColor ? false : true
       }
     },
     getMainColor: {
