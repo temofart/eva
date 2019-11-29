@@ -34,10 +34,10 @@ export default {
 
   @keyframes rotating {
   from {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -61,7 +61,21 @@ export default {
       background: url('../assets/loading.svg') no-repeat center center / cover;
       animation: rotating 1s ease-in-out infinite;
     }
+
+    &.found::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 30px;
+      display: block;
+      background: url('../assets/check-green.svg') no-repeat center center / contain;
+      transition: all .2s ease;
+    }
   }
+
   .img {
     position: absolute;
     width: 100%;

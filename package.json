@@ -41,7 +41,8 @@
       "no-unused-vars": "off",
       "no-extra-boolean-cast": "off",
       "for-direction": "off",
-      "vue/return-in-computed-property": "off"
+      "vue/return-in-computed-property": "off",
+      "no-debugger": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"

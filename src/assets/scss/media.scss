@@ -52,6 +52,7 @@ $not-mobile: '(min-width: 999px)';
       max-width: 640px;
     }
 
+    .slide-1,
     .slide-2 {
       .image {
         margin: 10px auto;
@@ -268,13 +269,20 @@ $not-mobile: '(min-width: 999px)';
 
     button {
       margin-top: 0;
-      padding: 15px 0;
     }
 
     .image.mobile {
       width: 200px;
       height: 242px;
       display: block !important;
+    }
+
+    .slide-1 {
+      .image.mobile {
+        width: 150px;
+        height: 182px;
+        display: block !important;
+      }
     }
 
     .vs__dropdown-toggle {

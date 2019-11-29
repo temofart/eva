@@ -1,12 +1,13 @@
 <template>
-  <div class="slide slide-1 column-2">
+  <div class="slide slide-1 column-2" :class="{'validate': validate}">
     <div class="column">
       <h2 class="title">Виртуальный<br>конструктор ковриков</h2>
       <div class="step">ШАГ 1 из 4</div>
       <strong class="description">В первую очередь нужно проверить наличие
 лекал под Ваш автомобиль</strong>
+      <image-svg class="mobile" :class="{'loading': loading, 'found': found}" />
       <v-select
-        :class="{'active': selectedBrand}"
+        :class="{'active': selectedBrand, 'error': !selectedBrand}"
         class="select"
         :options="brands"
         v-model="selectedBrand"
@@ -16,7 +17,7 @@
         <span slot="no-options">Не найдено</span>
       </v-select>
       <v-select
-        :class="{'active': selectedModel}"
+        :class="{'active': selectedModel, 'error': !selectedModel}"
         class="select"
         :options="models"
         v-model="selectedModel"
@@ -26,7 +27,7 @@
         <span slot="no-options">Не найдено</span>
       </v-select>
       <v-select
-        :class="{'active': selectedYear}"
+        :class="{'active': selectedYear, 'error': !selectedYear}"
         class="select"
         :options="years"
         v-model="selectedYear"
@@ -35,10 +36,10 @@
       >
         <span slot="no-options">Не найдено</span>
       </v-select>
-      <button class="button" @click.prevent="sendData" :disabled="!allowNext || loading">Проверить</button>
+      <button class="button" :class="{disabled: disabled}" @click.prevent="sendData">Проверить</button>
     </div>
     <div class="column">
-      <image-svg :class="{'loading': loading}" />
+      <image-svg :class="{'loading': loading, 'found': found}" />
     </div>
   </div>
 </template>
@@ -56,7 +57,9 @@ export default {
       selectedBrand: null,
       selectedModel: null,
       selectedYear: null,
-      loading: false
+      loading: false,
+      validate: false,
+      found: false
     }
   },
   methods: {
@@ -90,15 +93,25 @@ export default {
       }
     },
     sendData() {
-      this.loading = true
-      setTimeout(() => {
-        this.setCar([this.selectedBrand, this.selectedModel, this.selectedYear])
-        this.next()
-        this.loading = false
-        if(document.getElementById("rec140931884")) {
-          document.getElementById("rec140931884").scrollIntoView({block: "start", behavior: "smooth"})
-        }
-      }, 1000);
+      if (this.selectedBrand && this.selectedModel && this.selectedYear) {
+        this.validate = false
+        this.loading = true
+        setTimeout(() => {
+          this.found = true
+          this.loading = false
+        }, 1000)
+        setTimeout(() => {
+          this.setCar([this.selectedBrand, this.selectedModel, this.selectedYear])
+          this.next()
+          this.found = false
+          if(document.getElementById("rec140931884")) {
+            document.getElementById("rec140931884").scrollIntoView({block: "start", behavior: "smooth"})
+          }
+        }, 2000);
+      }
+      else {
+        this.validate = true
+      }
     }
   },
   mounted() {
@@ -106,9 +119,9 @@ export default {
     this.createYears()
   },
   computed: {
-    allowNext: {
+    disabled: {
       get() {
-        return this.selectedBrand && this.selectedModel && this.selectedYear ? true : false
+        return this.selectedBrand && this.selectedModel && this.selectedYear ? false : true
       }
     },
   }

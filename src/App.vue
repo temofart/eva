@@ -135,6 +135,16 @@ export default {
     word-break: break-word;
   }
 
+  .validate .v-select {
+    &.error {
+      .vs__dropdown-toggle {
+        border: 1px solid #d20004;
+        box-shadow: 0px 0px 1px 1px #d2000445;
+        transition: all .5s ease;
+      }
+    }
+  }
+
   .v-select {
     margin-bottom: 20px;
     font-size: 14px !important;
@@ -219,46 +229,40 @@ export default {
   }
 
   .button {
-    border: 0;
-    background: none;
     outline: none;
-    text-transform: uppercase;
     font-size: 16px;
     letter-spacing: 1.2px;
     font-weight: bold;
-    color: #d20004;
     margin: 0;
     padding: 12px 0;
     cursor: pointer;
     user-select: none;
     position: relative;
 
+    color: white;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 12px;
+    padding-right: 30px;
+    background: #d20004;
+    text-transform: capitalize;
+
     &::after {
       content: '';
       position: absolute;
-      right: -25px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      background: url('./assets/arrow.svg') no-repeat center center / cover;
+      background: url('./assets/arrow-white.svg') no-repeat center center / cover;
       width: 12px;
       height: 7px;
       display: block;
       transition: all .2s ease;
     }
 
-    &:hover {
-      &::after {
-        right: -30px;
-      }
-    }
-
-    &[disabled] {
+    &.disabled {
       opacity: 0.6;
       cursor: not-allowed;
-
-      &::after {
-        right: -25px;
-      }
     }
   }
 
