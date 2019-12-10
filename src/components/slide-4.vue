@@ -174,7 +174,7 @@ export default {
         document.querySelector('div[data-input-lid="1573456678439"] input').value = message[1]
         document.querySelector('div[data-input-lid="1573456688066"] input').value = message[2]
         document.querySelector('div[data-input-lid="1573456705570"] input').value = message[3]
-        document.querySelector('div[data-input-lid="1576002236468"] input').value = totalObject
+        document.querySelector('div[data-input-lid="1576002236468"] input').value = JSON.stringify(totalObject)
         document.querySelector('#rec140931901 button.t-submit').click()
         console.log(totalObject)
       }
