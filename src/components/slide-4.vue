@@ -164,19 +164,9 @@ export default {
         }
       }
 
-      if (
-        document.querySelector('div[data-input-lid="1493283059688"] input') &&
-        document.querySelector('div[data-input-lid="1573456678439"] input') &&
-        document.querySelector('div[data-input-lid="1573456688066"] input') &&
-        document.querySelector('div[data-input-lid="1573456705570"] input')
-      ) {
-        document.querySelector('div[data-input-lid="1493283059688"] input').value = message[0]
-        document.querySelector('div[data-input-lid="1573456678439"] input').value = message[1]
-        document.querySelector('div[data-input-lid="1573456688066"] input').value = message[2]
-        document.querySelector('div[data-input-lid="1573456705570"] input').value = message[3]
+      if (document.querySelector('div[data-input-lid="1576002236468"] input')) {
         document.querySelector('div[data-input-lid="1576002236468"] input').value = JSON.stringify(totalObject)
         document.querySelector('#rec140931901 button.t-submit').click()
-        console.log(totalObject)
       }
       else {
         return console.log('Нужных полей не найдено.')
