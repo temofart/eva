@@ -116,7 +116,7 @@ export default {
         color: `${this.$store.state.colors[0]}, ${this.$store.state.colors[1]}`,
         options: function() {
           if ("pyatnik" in kit) {
-            var output = `Комплект: ${kit.title}; Сумма заказа: ${total}`
+            var output = `Комплект: ${kit.title}; Сумма заказа: ${total}; `
             if (kit.pyatnik.is) {
               output += "Подпятник: Да. "
             }
@@ -148,6 +148,7 @@ export default {
         document.querySelector('div[data-input-lid="1573456678439"] input').value = message[1]
         document.querySelector('div[data-input-lid="1573456688066"] input').value = message[2]
         document.querySelector('div[data-input-lid="1573456705570"] input').value = message[3]
+        document.querySelector('div[data-input-lid="1576002236468"] input').value = message
         document.querySelector('#rec140931901 button.t-submit').click()
       }
       else {
