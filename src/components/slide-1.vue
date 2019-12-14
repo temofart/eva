@@ -6,7 +6,24 @@
       <strong class="description">В первую очередь нужно проверить наличие
 лекал под Ваш автомобиль</strong>
       <image-svg class="mobile" :class="{'loading': loading, 'found': found}" />
+      <div
+        v-if="isMobile"
+        class="my-select-wrapper"
+        :class="{'selected': selectedBrand !== 'Марка автомобиля'}"
+        @change="findModel"
+      >
+        <select
+          class="my-select"
+          v-model="selectedBrand"
+        >
+          <option value="Марка автомобиля" disabled selected>Марка автомобиля</option>
+          <template v-for="brand in brands">
+            <option :value="brand" :key="brand">{{brand}}</option>
+          </template>
+        </select>
+      </div>
       <v-select
+        v-else
         :class="{'active': selectedBrand, 'error': !selectedBrand}"
         class="select"
         :options="brands"
@@ -16,8 +33,25 @@
       >
         <span slot="no-options">Не найдено</span>
       </v-select>
+
+      <div
+        v-if="isMobile"
+        class="my-select-wrapper"
+        :class="{'selected': selectedModel !== 'Модель автомобиля'}"
+      >
+        <select
+          class="my-select"
+          v-model="selectedModel"
+        >
+          <option value="Модель автомобиля" disabled selected>Модель автомобиля</option>
+          <template v-for="model in models">
+            <option :value="model" :key="model">{{model}}</option>
+          </template>
+        </select>
+      </div>
       <v-select
-        :class="{'active': selectedModel, 'error': !selectedModel}"
+        v-else
+        :class="{'active': selectedModel !== 'Модель автомобиля', 'error': selectedModel == 'Модель автомобиля'}"
         class="select"
         :options="models"
         v-model="selectedModel"
@@ -26,7 +60,24 @@
       >
         <span slot="no-options">Не найдено</span>
       </v-select>
+
+      <div
+        v-if="isMobile"
+        class="my-select-wrapper"
+        :class="{'selected': selectedYear !== 'Год выпуска'}"
+      >
+        <select
+          class="my-select"
+          v-model="selectedYear"
+        >
+          <option value="Год выпуска" disabled selected>Год выпуска</option>
+          <template v-for="year in years">
+            <option :value="year" :key="year">{{year}}</option>
+          </template>
+        </select>
+      </div>
       <v-select
+        v-else
         :class="{'active': selectedYear, 'error': !selectedYear}"
         class="select"
         :options="years"
@@ -54,9 +105,9 @@ export default {
       brands: [],
       models: [],
       years: [],
-      selectedBrand: null,
-      selectedModel: null,
-      selectedYear: null,
+      selectedBrand: 'Марка автомобиля',
+      selectedModel: 'Модель автомобиля',
+      selectedYear: 'Год выпуска',
       loading: false,
       validate: false,
       found: false
@@ -124,6 +175,11 @@ export default {
         return this.selectedBrand && this.selectedModel && this.selectedYear ? false : true
       }
     },
+    isMobile: {
+      get() {
+        return window.innerWidth < 1024 ? false : true
+      }
+    }
   }
 }
 </script>
