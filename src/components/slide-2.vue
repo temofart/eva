@@ -9,13 +9,42 @@
         :borderColor="getSecondaryColor"
         class="mobile"
       />
+      <div
+        v-if="isMobile"
+        class="my-select-wrapper"
+        :class="{'active': selectedMainColor, 'error': !selectedMainColor}"
+      >
+        <select
+          class="my-select"
+          v-model="selectedMainColor"
+        >
+          <option value="" disabled selected>Цвет полимера</option>
+          <option v-for="mainColor in mainColors" :value="mainColor" :key="mainColor">{{mainColor}}</option>
+        </select>
+      </div>
       <v-select
+        v-else
         :options="mainColors"
         :class="{'active': selectedMainColor, 'error': !selectedMainColor}"
         v-model="selectedMainColor"
         placeholder="Цвет полимера"
       />
+
+      <div
+        v-if="isMobile"
+        class="my-select-wrapper"
+        :class="{'active': selectedSecondaryColor, 'error': !selectedSecondaryColor}"
+      >
+        <select
+          class="my-select"
+          v-model="selectedSecondaryColor"
+        >
+          <option value="" disabled selected>Цвет канта</option>
+          <option v-for="secondaryColor in secondaryColors" :value="secondaryColor" :key="secondaryColor">{{secondaryColor}}</option>
+        </select>
+      </div>
       <v-select
+        v-else
         :options="secondaryColors"
         :class="{'active': selectedSecondaryColor, 'error': !selectedSecondaryColor}"
         v-model="selectedSecondaryColor"
@@ -52,8 +81,8 @@ export default {
     return {
       mainColors: [],
       secondaryColors: [],
-      selectedMainColor: null,
-      selectedSecondaryColor: null,
+      selectedMainColor: '',
+      selectedSecondaryColor: '',
       validate: false
     }
   },
@@ -91,6 +120,11 @@ export default {
     getSecondaryColor: {
       get() {
         return colors.secondary[this.selectedSecondaryColor]
+      }
+    },
+    isMobile: {
+      get() {
+        return window.innerWidth < 1024 ? true : false
       }
     }
   }

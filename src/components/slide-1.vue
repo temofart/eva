@@ -171,7 +171,7 @@ export default {
     },
     isMobile: {
       get() {
-        return window.innerWidth < 1024 ? false : true
+        return window.innerWidth < 1024 ? true : false
       }
     }
   }
