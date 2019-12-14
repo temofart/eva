@@ -17,7 +17,7 @@
     margin-bottom: 20px;
     border-radius: 4px;
 
-    &.selected {
+    &.active {
       border: 1px solid rgb(128, 177, 68);
 
       select {
@@ -37,4 +37,10 @@
       display: block;
     }
   }
+}
+
+.validate .my-select-wrapper.error {
+  border: 1px solid #d20004 !important;
+  box-shadow: 0px 0px 1px 1px #d2000445;
+  transition: all .5s ease;
 }
