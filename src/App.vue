@@ -2,7 +2,7 @@
   <div id="constructor">
     <transition name="fade" mode="out-in">
       <keep-alive>
-          <component :is="`slide-${3}`" />
+          <component :is="`slide-${currentSlide}`" />
       </keep-alive>
     </transition>
     <transition name="fade" mode="out-in">
@@ -58,7 +58,7 @@ export default {
   }
 
   //submit form
-  .rec140931901 {
+  #rec140931901 {
     position: absolute;
     opacity: 0;
     right: 9999%;
