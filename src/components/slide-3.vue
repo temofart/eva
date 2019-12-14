@@ -48,7 +48,21 @@
               data-text="Шильды"
             />
             <i class="icon-info shilda" @click.stop="modalShildi"/>
+            <div
+              v-if="isMobile"
+              class="my-select-wrapper"
+            >
+              <select
+                class="my-select"
+                :disabled="isSelectDisabled(id)"
+                v-model="mobCount"
+                @change="setShildaCount([mobCount, id])"
+              >
+                <option v-for="index in 5" :value="index" :key="index">{{index}}</option>
+              </select>
+            </div>
             <v-select
+              v-else
               :options="['1', '2', '3', '4', '5']"
               @input="setShildaCount([$event, id])"
               :disabled="isSelectDisabled(id)"
@@ -86,6 +100,11 @@
 import {mapMutations, mapGetters} from 'vuex'
 export default {
   name: 'slide-3',
+  data() {
+    return {
+      mobCount: 1
+    }
+  },
   methods: {
     ...mapMutations(['setOption', 'next', 'prev', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShildi', 'modalPrivat']),
     calc(id, item, which, value) {
@@ -111,6 +130,11 @@ export default {
   },
   computed: {
     ...mapGetters(['getKits', 'getPrice', 'isSelectDisabled']),
+    isMobile: {
+      get() {
+        return window.innerWidth < 1024 ? true : false
+      }
+    }
   },
   mounted() {
     document.querySelector('.choose').scrollLeft = 330;
@@ -248,6 +272,13 @@ export default {
             transform: translateY(-50%);
             right: -4px;
           }
+        }
+
+        .my-select-wrapper {
+          width: 60px;
+          height: 30px;
+          margin: 0;
+          margin-left: 20px;
         }
       }
 
