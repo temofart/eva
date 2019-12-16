@@ -71,7 +71,7 @@
             </v-select>
           </div>
         </div>
-        <div class="gifts" v-if="id === 'premiumPlus'" />
+        <div class="gifts" v-if="id === 'premium'" />
         <div class="gifts" v-if="id === 'platinum' || id === 'vip'">
           <div class="gift">Специальный подарок</div>
           <div class="gift" v-if="id === 'platinum'">2 накидки на передние сиденья из Алькантары</div>
@@ -148,7 +148,7 @@ export default {
     height: 15px;
     display: inline-block;
     margin-left: 3px;
-    background: url('../assets/icon-info.svg') no-repeat center center / cover;
+    background: url('../assets/icon-info.svg') no-repeat center center / contain;
     cursor: pointer;
 
     &.pyatnik {

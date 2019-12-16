@@ -41,9 +41,9 @@ export default new Vuex.Store({
           count: 1
         }
       },
-      premium: {
-        title: 'Премиум',
-        price: 2040,
+      premiumPlus: {
+        title: 'Премиум (багажник)',
+        price: 2490,
         pyatnik: {
           is: false,
         },
@@ -52,9 +52,9 @@ export default new Vuex.Store({
           count: 1
         }
       },
-      premiumPlus: {
-        title: 'Премиум Плюс',
-        price: 2490
+      premium: {
+        title: 'Премиум',
+        price: 2040
       },
       platinum: {
         title: 'Платинум',
