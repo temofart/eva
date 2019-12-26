@@ -58,7 +58,7 @@ export default {
   }
 
   //submit form
-  #rec140931901 {
+  .t678 {
     position: absolute;
     opacity: 0;
     right: 9999%;
