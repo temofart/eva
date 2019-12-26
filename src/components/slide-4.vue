@@ -164,12 +164,12 @@ export default {
         }
       }
 
-      if (document.querySelector('div[data-input-lid="1576002236468"] input')) {
-        document.querySelector('div[data-input-lid="1576002236468"] input').value = JSON.stringify(totalObject)
-        document.querySelector('#rec140931901 button.t-submit').click()
+      if (document.querySelectorAll('.t678')[0]) {
+        document.querySelectorAll('.t678 .t-input')[0].value = JSON.stringify(totalObject)
+        document.querySelector('.t678 .t-submit').click()
       }
       else {
-        return console.log('Нужных полей не найдено.')
+        return alert('Форма отправки заявки не найдена. Свяжитесь с нами.')
       }
     }
   },
