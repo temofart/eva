@@ -149,9 +149,7 @@ export default {
           this.setCar([this.selectedBrand, this.selectedModel, this.selectedYear])
           this.next()
           this.found = false
-          if(document.getElementById("rec140931884")) {
-            document.getElementById("rec140931884").scrollIntoView({block: "start", behavior: "smooth"})
-          }
+          document.getElementById("constructor").scrollIntoView({block: "start", behavior: "smooth"})
         }, 2000);
       }
       else {
