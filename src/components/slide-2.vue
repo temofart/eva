@@ -97,9 +97,7 @@ export default {
         this.validate = false
         this.setColor([this.selectedMainColor, this.selectedSecondaryColor])
         this.next()
-        if(document.getElementById("rec140931884")) {
-          document.getElementById("rec140931884").scrollIntoView({block: "start", behavior: "smooth"})
-        }
+        document.getElementById("constructor").scrollIntoView({block: "start", behavior: "smooth"})
       }
       else {
         this.validate = true
