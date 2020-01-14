@@ -21,7 +21,7 @@ export default new Vuex.Store({
     kits: {
       econom: {
         title: 'Эконом',
-        price: 910,
+        price: 1010,
         pyatnik: {
           is: false,
         },
@@ -32,7 +32,7 @@ export default new Vuex.Store({
       },
       standart: {
         title: 'Стандарт',
-        price: 1290,
+        price: 1390,
         pyatnik: {
           is: false,
         },
@@ -43,7 +43,7 @@ export default new Vuex.Store({
       },
       premiumBagazhnik: {
         title: 'Премиум (багажник)',
-        price: 2490,
+        price: 2590,
         pyatnik: {
           is: false,
         },
@@ -54,15 +54,15 @@ export default new Vuex.Store({
       },
       premium: {
         title: 'Премиум',
-        price: 2040
+        price: 2140
       },
       platinum: {
         title: 'Платинум',
-        price: 5040
+        price: 5140
       },
       vip: {
         title: 'VIP',
-        price: 3650
+        price: 3750
       }
     }
   },
