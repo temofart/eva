@@ -115,6 +115,13 @@ export default new Vuex.Store({
       if (which === 'shilda') {
         state.kits[id].shildi.is = !state.kits[id].shildi.is
       }
+    },
+    importPrices(state, prices) {
+      var i = 0
+      for (let key of Object.values(state.kits)) {
+        key.price = prices[i]
+        i++
+      }
     }
   },
   getters: {
