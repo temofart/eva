@@ -89,9 +89,17 @@ export default {
   mounted() {
     this.mainColors = Object.keys(colors.main)
     this.secondaryColors = Object.keys(colors.secondary)
+
+    // set prices for next slide
+    const elements = document.querySelectorAll('a[href="kitsPrice"]')
+    const prices = []
+    elements.forEach(el => {
+      prices.push(el.innerText)
+    })
+    this.importPrices(prices)
   },
   methods: {
-    ...mapMutations(['next', 'prev', 'setColor']),
+    ...mapMutations(['next', 'prev', 'setColor', 'importPrices']),
     sendData() {
       if (this.selectedMainColor && this.selectedSecondaryColor) {
         this.validate = false

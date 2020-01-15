@@ -2,7 +2,7 @@
   <div id="constructor">
     <transition name="fade" mode="out-in">
       <keep-alive>
-          <component :is="`slide-${currentSlide}`" />
+        <component :is="`slide-${currentSlide}`" />
       </keep-alive>
     </transition>
     <transition name="fade" mode="out-in">
@@ -37,15 +37,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['next', 'prev', 'importPrices'])
-  },
-  mounted() {
-    // const elements = document.querySelectorAll('a[href="kitsPrice"]')
-    // const prices = []
-    // elements.forEach(el => {
-    //   prices.push(el.innerText)
-    // })
-    // this.importPrices(prices)
+    ...mapMutations(['next', 'prev'])
   }
 }
 </script>
