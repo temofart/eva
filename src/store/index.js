@@ -117,13 +117,11 @@ export default new Vuex.Store({
       }
     },
     importPrices(state, prices) {
-      console.log(prices)
       var i = 0
       for (let key of Object.values(state.kits)) {
-        key.price = prices[i]
+        key.price = parseInt(prices[i])
         i++
       }
-      console.log(state.kits)
     }
   },
   getters: {
