@@ -17,18 +17,24 @@
           placeholder="Имя"
           v-model="name">
 
-          <input
-          :class="{'active': phone, 'error': !phone}"
-          class="input m-b-0"
-          type="number"
-          placeholder="Телефон"
-          v-model="phone">
+          <masked-input
+            v-model="phone"
+            :class="{'active': phone, 'error': !phone}"
+            class="input m-b-0"
+            type="tel"
+            name="phone"
+            :mask="['+', '3', '8', ' ', '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]"
+            placeholderChar="_"
+            placeholder="Телефон"
+          >
+          </masked-input>
 
           <input
             type="checkbox"
             id="agree"
             @change="agree = !agree"
             class="input"
+            checked
           >
           <label
             for="agree"
@@ -77,6 +83,7 @@
 
 <script>
 import {mapMutations} from 'vuex'
+import MaskedInput from 'vue-text-mask'
 export default {
   name: 'slide-4',
   data() {
@@ -86,7 +93,7 @@ export default {
       finalText: 'Жду звонка',
       loading: false,
       submitted: false,
-      agree: false,
+      agree: true,
       validate: false
     }
   },
@@ -179,7 +186,10 @@ export default {
         return this.name && this.phone && this.agree ? false : true
       }
     }
-  }
+  },
+  components: {
+    MaskedInput
+  },
 }
 </script>
 
