@@ -84,6 +84,7 @@
         <button
           @click.prevent="sendData(item, id)"
           class="button"
+          :id="id"
         >Выбрать комплект</button>
       </div>
     </div>
