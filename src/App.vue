@@ -37,17 +37,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['next', 'prev', 'importPrices'])
-  },
-  mounted() {
-    if (document.querySelectorAll('a[href="kitsPrice"]')) {
-      const elements = document.querySelectorAll('a[href="kitsPrice"]')
-      const prices = []
-      elements.forEach(el => {
-        prices.push(el.innerText)
-      })
-      this.importPrices(prices)
-    }
+    ...mapMutations(['next', 'prev'])
   }
 }
 </script>

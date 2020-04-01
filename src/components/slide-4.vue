@@ -51,6 +51,7 @@
               v-if="!submitted"
               class="button"
               :class="{disabled: disabled}"
+              :id="`complect_${finalKit}`"
               @click.prevent="sendData">Жду звонка</button>
           </div>
         </template>
@@ -184,6 +185,11 @@ export default {
     disabled: {
       get() {
         return this.name && this.phone && this.agree ? false : true
+      }
+    },
+    finalKit: {
+      get() {
+        return this.$store.state.finalKit
       }
     }
   },

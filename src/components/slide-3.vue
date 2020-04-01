@@ -107,7 +107,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setOption', 'next', 'prev', 'setKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShildi', 'modalPrivat']),
+    ...mapMutations(['setOption', 'next', 'prev', 'setKit', 'setFinalKit', 'setShildaCount', 'setPrice', 'modalInfo', 'modalPyatnik', 'modalShildi', 'modalPrivat']),
     calc(id, item, which, value) {
       if (which === 'pyatnik') {
         this.setOption([id, 'pyatnik'])
@@ -121,6 +121,7 @@ export default {
       const price = this.getPrice(id)
       this.setKit(obj)
       this.setPrice(price)
+      this.setFinalKit(id)
       this.next()
     },
     getImage: (id) => {

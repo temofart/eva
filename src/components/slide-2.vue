@@ -91,12 +91,14 @@ export default {
     this.secondaryColors = Object.keys(colors.secondary)
 
     // set prices for next slide
-    const elements = document.querySelectorAll('a[href="kitsPrice"]')
-    const prices = []
-    elements.forEach(el => {
-      prices.push(el.innerText)
-    })
-    this.importPrices(prices)
+    if (document.querySelectorAll('a[href="kitsPrice"]').length) {
+      const elements = document.querySelectorAll('a[href="kitsPrice"]')
+      const prices = []
+      elements.forEach(el => {
+        prices.push(el.innerText)
+      })
+      this.importPrices(prices)
+    }
   },
   methods: {
     ...mapMutations(['next', 'prev', 'setColor', 'importPrices']),

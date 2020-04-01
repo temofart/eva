@@ -18,6 +18,7 @@ export default new Vuex.Store({
     pyatnikPrice: 450,
     shildaPrice: 150,
     totalPrice: null,
+    finalKit: '',
     kits: {
       econom: {
         title: 'Эконом',
@@ -81,6 +82,9 @@ export default new Vuex.Store({
     },
     setKit(state, obj) {
       state.kit = obj
+    },
+    setFinalKit(state, name) {
+      state.finalKit = name
     },
     setPrice(state, price) {
       state.totalPrice = price
