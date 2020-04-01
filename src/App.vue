@@ -40,12 +40,14 @@ export default {
     ...mapMutations(['next', 'prev', 'importPrices'])
   },
   mounted() {
-    const elements = document.querySelectorAll('a[href="kitsPrice"]')
-    const prices = []
-    elements.forEach(el => {
-      prices.push(el.innerText)
-    })
-    this.importPrices(prices)
+    if (document.querySelectorAll('a[href="kitsPrice"]')) {
+      const elements = document.querySelectorAll('a[href="kitsPrice"]')
+      const prices = []
+      elements.forEach(el => {
+        prices.push(el.innerText)
+      })
+      this.importPrices(prices)
+    }
   }
 }
 </script>
