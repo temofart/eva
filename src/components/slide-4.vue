@@ -184,8 +184,8 @@ export default {
 
       this.totalObject = {
         isFake: false,
-        name: this.$store.state.personal[0],
-        phone: this.$store.state.personal[1],
+        name: this.name,
+        phone: this.phone,
         carMarka: this.$store.state.carModel[0],
         carModel: this.$store.state.carModel[1],
         carYear: this.$store.state.carModel[2],
