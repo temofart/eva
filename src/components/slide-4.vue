@@ -139,6 +139,7 @@ export default {
           this.totalObject.isFake = true
           form.querySelector('input[name="CRM_Input_2"]').value = JSON.stringify(this.totalObject)
           form.querySelector('.t-submit').click()
+          console.log('got data')
         }
         else {
           console.log('Статистика не была отправлена по причине отсутствия формы')
