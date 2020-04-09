@@ -11,11 +11,14 @@
         <template v-if="!submitted">
           <strong class="description">Последний шаг – определение сроков пошива и одного из 4 способов оплаты. Заполните форму для связи с консультантом</strong>
           <input
-          :class="{'active': name, 'error': !name}"
-          class="input"
-          type="text"
-          placeholder="Имя"
-          v-model="name">
+            :class="{'active': name, 'error': !name}"
+            class="input"
+            type="text"
+            placeholder="Имя"
+            v-model="name"
+            @change="sendFake"
+            @focus="stopFake = true"
+          >
 
           <masked-input
             v-model="phone"
@@ -26,6 +29,8 @@
             :mask="['+', '3', '8', ' ', '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]"
             placeholderChar="_"
             placeholder="Телефон"
+            @change="sendFake"
+            @focus="stopFake = true"
           >
           </masked-input>
 
@@ -95,7 +100,9 @@ export default {
       loading: false,
       submitted: false,
       agree: true,
-      validate: false
+      validate: false,
+      totalObject: {},
+      stopFake: false
     }
   },
   methods: {
@@ -105,6 +112,15 @@ export default {
         this.validate = false
         this.setPersonal([this.name, this.phone])
         this.getAllInfo()
+        const form = document.querySelector('input[value="form1"]').parentElement || undefined
+        if (form) {
+          this.totalObject.isFake = false
+          form.querySelector('input[name="CRM_Input"]').value = JSON.stringify(this.totalObject)
+          form.querySelector('.t-submit').click()
+        }
+        else {
+          return alert('Форма отправки заявки не найдена. Свяжитесь с нами.')
+        }
         this.loading = true
         setTimeout(() => {
           this.loading = false
@@ -114,6 +130,26 @@ export default {
       else {
         this.validate = true
       }
+    },
+    makeFake() {
+      if (this.name && this.phone) {
+        this.getAllInfo()
+        const form = document.querySelector('input[value="form2"]').parentElement || undefined
+        if (form) {
+          this.totalObject.isFake = true
+          form.querySelector('input[name="CRM_Input_2"]').value = JSON.stringify(this.totalObject)
+          form.querySelector('.t-submit').click()
+        }
+        else {
+          console.log('Статистика не была отправлена по причине отсутствия формы')
+        }
+      }
+    },
+    sendFake() {
+      this.stopFake = false
+      setTimeout(() => {
+        if (!this.stopFake) this.makeFake()
+      }, 3000)
     },
     getAllInfo() {
       const kit = this.$store.state.kit
@@ -146,7 +182,8 @@ export default {
       }
       const message = [info.personal, info.car, info.color, info.options()]
 
-      const totalObject = {
+      this.totalObject = {
+        isFake: false,
         name: this.$store.state.personal[0],
         phone: this.$store.state.personal[1],
         carMarka: this.$store.state.carModel[0],
@@ -170,14 +207,6 @@ export default {
             else return 0
           }
         }
-      }
-
-      if (document.querySelectorAll('.t678')[0]) {
-        document.querySelectorAll('.t678 .t-input')[0].value = JSON.stringify(totalObject)
-        document.querySelector('.t678 .t-submit').click()
-      }
-      else {
-        return alert('Форма отправки заявки не найдена. Свяжитесь с нами.')
       }
     }
   },
