@@ -38,6 +38,9 @@ export default {
   },
   methods: {
     ...mapMutations(['next', 'prev'])
+  },
+  mounted() {
+    console.log('updated')
   }
 }
 </script>
