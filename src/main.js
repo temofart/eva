@@ -3,6 +3,7 @@ import store from './store'
 import App from './App.vue'
 import vSelect from 'vue-select'
 
+
 Vue.config.productionTip = false
 Vue.prototype.$info = window.info;
 
