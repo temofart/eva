@@ -20,19 +20,16 @@
             @focus="stopFake = true"
           >
 
-          <masked-input
-            v-model="phone"
+          <input
+            v-model.lazy="phone"
             :class="{'active': phone, 'error': !phone}"
             class="input m-b-0"
             type="tel"
             name="phone"
-            :mask="['+', '3', '8', ' ', '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]"
-            placeholderChar="_"
             placeholder="Телефон"
             @change="sendFake"
             @focus="stopFake = true"
           >
-          </masked-input>
 
           <input
             type="checkbox"
@@ -90,6 +87,7 @@
 <script>
 import {mapMutations} from 'vuex'
 import MaskedInput from 'vue-text-mask'
+
 export default {
   name: 'slide-4',
   data() {
@@ -209,7 +207,7 @@ export default {
           }
         }
       }
-    }
+    },
   },
   computed: {
     disabled: {
@@ -223,9 +221,15 @@ export default {
       }
     }
   },
-  components: {
-    MaskedInput
-  },
+  beforeMount() {
+    const plugin = document.createElement("script");
+    plugin.setAttribute(
+      "src",
+      "//evakovrik.com.ua/js/tilda-constructor-mask.js?123"
+    );
+    plugin.async = true;
+    document.head.appendChild(plugin);
+  }
 }
 </script>
 
